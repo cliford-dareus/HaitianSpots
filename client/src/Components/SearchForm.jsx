@@ -1,11 +1,4 @@
 import React, { useEffect, useState } from "react";
-import {
-  SearchFormContainer,
-  SearchFormInput,
-  SearchFormInputContainer,
-  SearchResultContainer,
-  SearchResultContent,
-} from "../Utils/Styles/SearchForm";
 import { FiSearch } from "react-icons/fi";
 import { getLocation } from "../Utils/API";
 
