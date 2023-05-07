@@ -1,15 +1,15 @@
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Landing from "./Pages/Landing";
 import Layout from "./Components/Layout";
 import Locations from "./Pages/Locations";
+import Loading from "./Components/Loading";
 import { GlobalStyles } from "./Utils/styles/GlobalStyles";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
+    <>
     <div>
+      <Loading />
       <GlobalStyles />
       <Routes>
         <Route element={<Layout />}>
@@ -18,6 +18,7 @@ function App() {
         </Route>
       </Routes>
     </div>
+    </>
   );
 }
 

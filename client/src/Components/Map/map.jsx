@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import Map, { Marker, Popup, Layer, Source } from "react-map-gl";
-import { userContext } from "../../Context/UserCoordContext";
 import "mapbox-gl/dist/mapbox-gl.css";
 // import Loading from "../Components/Loading";
 // import pin from "../assets/pin.png";
-// import ypin from "../assets/ypin.png";
+import ypin from "../../assets/ypin.png";
 
 import {
   getLocations,
@@ -13,10 +12,13 @@ import {
 } from "../../helper/FetchLocation";
 import { getDirections } from "../../Utils/API";
 import { MapContainer } from "../../Pages/Landing/landing.style";
+import useUserLocation from "../../Utils/hooks/useUserLocation";
 // import PopupContent from "../Components/Popup";
 
 const Home = ({ isOpen }) => {
-  const { coords, isReady } = useContext(userContext);
+  const { coords, isLoading } = useUserLocation();
+  const [isMapReady, setIsMapReady] = useState(false);
+
   const [locations, setLocations] = useState([]);
   const [showPopup, setShowPopup] = useState({});
   const [geojson, setGeoJson] = useState({});
@@ -24,12 +26,23 @@ const Home = ({ isOpen }) => {
   const [routeLayer, setRouteLayer] = useState(geojsonData);
   const [startLayer, setStartLayer] = useState({ ...startingLayer });
   const [viewport, setViewport] = useState({
-    width: `calc(100vw - ${isOpen ? `150px` : `55px`}`,
-    height: `calc(100vh - ${isOpen ? `150px` : `55px`}`,
-    longitude: coords.longitude || -80.191788,
-    latitude: coords.latitude ||  25.761681,
+    width: `calc(100vw - ${!isOpen ? `150px` : `55px`}`,
+    height: `calc(100vh - ${!isOpen ? `150px` : `55px`}`,
+    longitude: null,
+    latitude: null,
     zoom: 15,
   });
+
+  useEffect(() => {
+    if (coords.latitude) {
+      setViewport({
+        ...viewport,
+        longitude: coords.longitude,
+        latitude: coords.latitude,
+      });
+      setIsMapReady(true);
+    }
+  }, [coords.latitude]);
 
   // const handlePopup = (location) => {
   //   setShowPopup({ [location._id]: true });
@@ -89,29 +102,37 @@ const Home = ({ isOpen }) => {
   //   });
   // }, [isReady]);
 
+  // console.log(coords);
+
   return (
     <MapContainer>
+      {isMapReady && (
         <Map
           reuseMaps
           {...viewport}
-          mapStyle= "mapbox://styles/cliford-dareus/cl8cigcp7000314q6uklerz41"
+          mapStyle="mapbox://styles/cliford-dareus/cl8cigcp7000314q6uklerz41"
           mapboxAccessToken={import.meta.env.VITE_APP_MAPBOX_TOKEN}
           onMove={(evt) => setViewport(evt.viewport)}
         >
           {/* User Marker */}
-          {/* <Marker
-            longitude={coords.longitude}
-            latitude={coords.latitude}
-            anchor="bottom"
-          >
-            <img
-              src={ypin}
-              style={{ width: `${6 * 13}px`, height: `${6 * 13}px` }}
-              alt=""
-            />
-            <p>You're Here</p>
-          </Marker> */}
+
+          {coords.latitude && (
+            <Marker
+              longitude={coords.longitude}
+              latitude={coords.latitude}
+              anchor="bottom"
+            >
+              <img
+                src={ypin}
+                style={{ width: `${6 * 13}px`, height: `${6 * 13}px` }}
+                alt=""
+              />
+              <p>You're Here</p>
+            </Marker>
+          )}
+
           {/* Location Marker */}
+
           {/* {locations.map((location) => (
             <React.Fragment key={location._id}>
               <Marker
@@ -127,7 +148,8 @@ const Home = ({ isOpen }) => {
                 />
                 <p>{location.title}</p>
               </Marker> */}
-              {/* {showPopup[location._id] && (
+
+          {/* {showPopup[location._id] && (
                 <Popup
                   longitude={location.longitude}
                   latitude={location.latitude}
@@ -141,13 +163,16 @@ const Home = ({ isOpen }) => {
                   <PopupContent location={location} setRoute={setRoute} />
                 </Popup>
               )} */}
-            {/* </React.Fragment>
+
+          {/* </React.Fragment>
+          
           ))}
           ; */}
           {/* <Source id="my-data" type="geojson" data={geojson}>
             {routeLayer.source.data !== null && <Layer {...routeLayer} />}
           </Source> */}
         </Map>
+      )}
     </MapContainer>
   );
 };

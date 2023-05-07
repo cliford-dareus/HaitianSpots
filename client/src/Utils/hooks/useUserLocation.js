@@ -1,10 +1,9 @@
-import React,{ createContext, useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+// import getUserLocation from "../functions/getUserLocation";
 
-const userContext = createContext();
-
-const UserLocationProvider = ({children}) => {
+const useUserLocation = () => {
   const [coords, setCoords] = useState({});
-  const [ isReady, setIsReady ] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const options = {
     enableHighAccuracy: true,
@@ -17,21 +16,20 @@ const UserLocationProvider = ({children}) => {
   };
 
   const success = (pos) => {
+    setIsLoading(true);
     const crd = pos.coords;
 
-    setCoords({
-      latitude: crd.latitude,
-      longitude: crd.longitude
-    });
+    if (crd.latitude) {
+        setCoords({
+            latitude: crd.latitude,
+            longitude: crd.longitude,
+        });
 
-    setTimeout(() => {
-      setIsReady(true)
-    },500)
-  //   console.log(`More or less ${crd.accuracy} meters.`);
+        setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-    const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.permissions
         .query({ name: "geolocation" })
@@ -50,17 +48,9 @@ const UserLocationProvider = ({children}) => {
     } else {
       alert("Sorry Not available!");
     }
-  };
-    getUserLocation()
-  }, [])
-  
-  
+  }, []);
 
-  return(
-    <userContext.Provider value={{ coords, isReady }}>
-      {children}
-    </userContext.Provider>
-  )
+  return { coords, isLoading };
 };
 
-export { userContext, UserLocationProvider}
+export default useUserLocation;

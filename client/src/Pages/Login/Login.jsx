@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Form from "../Components/Form";
+import Form from "../../Components/Form";
 import { useNavigate } from 'react-router-dom'
 import {
   AuthButton,
@@ -8,8 +8,8 @@ import {
   PageForm,
   PageTitle,
 } from "../Utils/Styles/auth";
-import { useAuthContext } from "../Context/userAuthContext";
-import { loginUser } from "../Utils/API";
+import { useAuthContext } from "../../Context/userAuthContext";
+import { loginUser } from "../../Utils/API";
 
 const Login = () => {
   const { saveUserInfo } = useAuthContext();

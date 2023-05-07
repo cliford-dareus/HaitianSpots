@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import Form from "../Components/Form";
-import { registerUser } from "../Utils/API";
+import Form from "../../Components/Form";
+import { registerUser } from "../../Utils/API";
 import {
   AuthButton,
   PageContainer,

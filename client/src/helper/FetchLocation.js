@@ -5,6 +5,7 @@ export const getLocations = async () => {
   return locations;
 };
 
+// To erase
 export const geojsonData = {
   id: "Route",
   type: "line",
