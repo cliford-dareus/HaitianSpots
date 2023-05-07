@@ -1,11 +1,15 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const locationApi = createApi({
-    reducerPath: 'locationApi',
-    baseQuery: fetchBaseQuery({
-        baseUrl: ''
+  reducerPath: "locationApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:3000/api/v1",
+  }),
+  endpoints: (builder) => ({
+    getLocations: builder.query({
+      query: () => `/location`,
     }),
-    endpoints: (builder) => ({
-        
-    })
-})
+  }),
+});
+
+export const { useGetLocationsQuery } = locationApi;

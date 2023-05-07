@@ -1,13 +1,7 @@
 import React from "react";
 import { FaRoute } from "react-icons/fa";
-import {
-  PopupImageContainer,
-  PopupItemDetailsContainer,
-  PopupItemsContainer,
-  PopupRoutingButton,
-  PopupCardTitle,
-  PopupButton,
-} from "../Utils/Styles/HomePage";
+import { PopupButton, PopupCardTitle, PopupImageContainer, PopupItemDetailsContainer, PopupItemsContainer, PopupRoutingButton } from "./mapPopup.styles";
+
 
 const PopupContent = ({ location, setRoute }) => {
   return (

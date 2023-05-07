@@ -11,6 +11,7 @@ export const GlobalStyles = createGlobalStyle`
         --bg--primary-900: black;
         --bg--primary-800: #1a1a1a;
         --bg--primary-500: #353535;
+        --bg--primary-400: #282828;
 
         --accent--color-200: #00B2FF;
 

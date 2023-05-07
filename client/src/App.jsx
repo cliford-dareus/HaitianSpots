@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Landing from "./Pages/Landing";
 import Layout from "./Components/Layout";
 import Locations from "./Pages/Locations";
-import Loading from "./Components/Loading";
+import Loading from "./Utils/commons/Loading";
 import { GlobalStyles } from "./Utils/styles/GlobalStyles";
 
 function App() {

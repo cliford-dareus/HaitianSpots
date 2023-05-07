@@ -29,7 +29,7 @@ export const LandingSectionContent = styled.div`
   height: 60%;
   padding: 1em;
   border-radius: 0.5em;
-  background-color: var(--bg--primary-800);
+  background-color: var(--bg--primary-400);
 `;
 
 export const LandingSectionCardContainer = styled.div`
@@ -48,13 +48,14 @@ export const LandingSectionCard = styled.div`
   background-color: var(--accent--color-200);
   display: flex;
   align-items: flex-end;
+  cursor: pointer;
 `;
 
 export const LandingSectionCardIcon = styled.span`
-    position: absolute;
-    top: .5em;
-    right: .5em;
-    font-size: 1.5em;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  font-size: 1.5em;
 `;
 
 export const LandingSectionLeftBtn = styled.button`
@@ -67,6 +68,7 @@ export const LandingSectionLeftBtn = styled.button`
   font-weight: 800;
   font-size: 1.1rem;
   margin-top: 1em;
+  cursor: pointer;
 `;
 
 export const SectionTitle = styled.h1`
