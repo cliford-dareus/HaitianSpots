@@ -46,6 +46,10 @@ export const LandingSectionCard = styled.div`
   border-radius: 0.5em;
   padding: 1em;
   background-color: var(--accent--color-200);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
   display: flex;
   align-items: flex-end;
   cursor: pointer;

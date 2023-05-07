@@ -94,30 +94,28 @@ const Home = ({ isOpen }) => {
 
   return (
     <MapContainer>
-      {isMapReady && (
-        <Map
-          reuseMaps
-          {...viewport}
-          mapStyle="mapbox://styles/cliford-dareus/cl8cigcp7000314q6uklerz41"
-          mapboxAccessToken={import.meta.env.VITE_APP_MAPBOX_TOKEN}
-          onMove={(evt) => setViewport(evt.viewport)}
-        >
-          {/* User Marker */}
-          <UserPin coords={coords} />
-          {/* Location Marker */}
-          <LocationPin
-            data={data}
-            showPopup={showPopup}
-            handlePopup={handlePopup}
-            setShowPopup={setShowPopup}
-            setRoute={setRoute}
-          />
-          {/* The Route Layer */}
-          {/* <Source id="my-data" type="geojson" data={geojson}>
+      <Map
+        reuseMaps
+        {...viewport}
+        mapStyle="mapbox://styles/cliford-dareus/clhdu4uit028h01p49p287x74"
+        mapboxAccessToken={import.meta.env.VITE_APP_MAPBOX_TOKEN}
+        onMove={(evt) => setViewport(evt.viewport)}
+      >
+        {/* User Marker */}
+        <UserPin coords={coords} />
+        {/* Location Marker */}
+        <LocationPin
+          data={data}
+          showPopup={showPopup}
+          handlePopup={handlePopup}
+          setShowPopup={setShowPopup}
+          setRoute={setRoute}
+        />
+        {/* The Route Layer */}
+        {/* <Source id="my-data" type="geojson" data={geojson}>
             {routeLayer.source.data !== null && <Layer {...routeLayer} />}
           </Source> */}
-        </Map>
-      )}
+      </Map>
     </MapContainer>
   );
 };

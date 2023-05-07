@@ -1,5 +1,5 @@
 import React from 'react';
-import ypin from "../../assets/ypin.png";
+import Pin from "../../assets/locationPin.svg";
 import Map, { Marker, Popup, Layer, Source } from "react-map-gl";
 
 const index = ({ coords}) => {
@@ -12,8 +12,8 @@ const index = ({ coords}) => {
               anchor="bottom"
             >
               <img
-                src={ypin}
-                style={{ width: `${50}px`, height: `${50}px` }}
+                src={Pin}
+                style={{ width: `${30}px`, height: `${30}px`, color: 'white' }}
                 alt=""
               />
               <p>You're Here</p>

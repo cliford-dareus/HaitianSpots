@@ -13,8 +13,25 @@ const createLocation = async (req, res) => {
 
 const updateLocation = async (req, res) => {
   const { id } = req.params;
-
   const location = await Location.findByIdAndUpdate();
+};
+
+const updateFavoriteLocation = async (req, res) => {
+  const { id } = req.params;
+
+  const location = await Location.findOne({
+    _id: id,
+  });
+
+  if (!location) {
+    throw new Error("Location Does not exist");
+  }
+
+  await location.update({
+    favorite: !location.favorite,
+  });
+
+  res.status(200).json(location);
 };
 
 const getLocation = async (req, res) => {
@@ -68,4 +85,5 @@ module.exports = {
   getAllLocations,
   createLocation,
   getLocation,
+  updateFavoriteLocation,
 };

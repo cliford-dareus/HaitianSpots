@@ -17,8 +17,10 @@ import {
   LocationSectionFilter,
 } from "./locations.styles";
 import { IoFilter } from "react-icons/io5";
+import { useGetLocationsQuery } from "../../features/api/locationApi";
 
 const index = () => {
+  const { data, isLoading } = useGetLocationsQuery();
   return (
     <LocationSection>
       <SectionTitle>
@@ -50,17 +52,19 @@ const index = () => {
           </LocationSectionContentFilter>
 
           <LocationContentListBox>
-            {[1, 2, 3, 4, 5, 6, 7].map((list) => (
-              <LocationContentList>
-                <LocationContentListImage></LocationContentListImage>
+            {data?.location?.map((list) => (
+              <LocationContentList key={list._id}>
+                <LocationContentListImage>
+                  <img src={`${list.image}`} alt="" />
+                </LocationContentListImage>
 
                 <LocationContentListTextBox>
                   <LocationContentListText>
-                    <h3>Hell's Kitchen</h3>
-                    <p>Rating</p>
+                    <h3>{list.title}</h3>
+                    <p>{list.adress}</p>
                   </LocationContentListText>
 
-                  <p>17040 NE 21st Ave</p>
+                  <p>Rating</p>
 
                   <LocationContentListBtn>View Location</LocationContentListBtn>
                 </LocationContentListTextBox>

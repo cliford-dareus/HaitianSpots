@@ -12,11 +12,12 @@ import {
   SectionTitle,
 } from "./landing.style";
 import Map from "../../Components/Map/map";
-import { AiOutlineHeart } from "react-icons/ai";
-import { useGetLocationsQuery } from "../../features/api/locationApi";
+import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import { useFavoriteLocationMutation, useGetLocationsQuery } from "../../features/api/locationApi";
 
 const index = () => {
   const { data, isLoading } = useGetLocationsQuery();
+  const [updateFavorite ] = useFavoriteLocationMutation();
 
   return (
     <LandingSection>
@@ -33,16 +34,26 @@ const index = () => {
           <h2>Recently Added</h2>
           <LandingSectionCardContainer>
             {!isLoading &&
-              data.location.slice(0, 2).map((card) => (
-                <LandingSectionCard key={card._id}>
+              data?.location?.slice(0, 2).map((card) => (
+                <LandingSectionCard
+                  key={card._id}
+                  style={{backgroundImage: `url(${card.image})`}}
+                >
                   <div>
                     <h3>{card.title}</h3>
                     <p>
                       <span>star</span> 3.5
                     </p>
                   </div>
-                  <LandingSectionCardIcon>
-                    <AiOutlineHeart />
+                  <LandingSectionCardIcon
+                    onClick={()=>{
+                      updateFavorite(card._id)
+                    }}
+                  >{
+                    card.favorite?
+                    <AiOutlineHeart />:
+                    <AiTwotoneHeart />
+                  }
                   </LandingSectionCardIcon>
                 </LandingSectionCard>
               ))}

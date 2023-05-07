@@ -85,8 +85,18 @@ export const LocationContentList = styled.div`
 export const LocationContentListImage = styled.div`
   width: 150px;
   height: 100%;
+  overflow: hidden;
+  position: relative;
   background-color: gray;
   border-radius: 0.5em;
+
+  img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const LocationContentListTextBox = styled.div`
@@ -98,12 +108,15 @@ export const LocationContentListTextBox = styled.div`
   align-items: center;
 `;
 
-export const LocationContentListText = styled.div``;
+export const LocationContentListText = styled.div`
+  width: 60%;
+`;
 
 export const LocationContentListBtn = styled.button`
   border: none;
   outline: none;
-  padding: 0.7em 2.5em;
+  padding: 0.7em 2em;
   border-radius: 0.5em;
   background-color: var(--bg--primary-900);
+  border: 1px solid var(--accent--color-200);
 `;

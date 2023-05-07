@@ -1,5 +1,5 @@
 import React from "react";
-import { getLocations } from "../helper/FetchLocation";
+import { getLocations } from "../../helper/FetchLocation";
 
 const Favorite = () => {
   const [locations, setLocations] = useState([]);
