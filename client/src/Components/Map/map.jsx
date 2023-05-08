@@ -97,7 +97,7 @@ const Home = ({ isOpen }) => {
       <Map
         reuseMaps
         {...viewport}
-        mapStyle="mapbox://styles/cliford-dareus/clhdu4uit028h01p49p287x74"
+        // mapStyle="mapbox://styles/cliford-dareus/clhdu4uit028h01p49p287x74"
         mapboxAccessToken={import.meta.env.VITE_APP_MAPBOX_TOKEN}
         onMove={(evt) => setViewport(evt.viewport)}
       >

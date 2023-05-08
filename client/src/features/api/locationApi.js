@@ -11,6 +11,13 @@ export const locationApi = createApi({
       query: () => `/location`,
       providesTags: ['Location']
     }),
+    addLocation: builder.mutation({
+      query: ({data}) => ({
+        url: `location/`,
+        method: 'POST',
+        body: data
+      }),
+    }),
     getLocation: builder.query({
       query: (title) => `location/filter?title=${title}`,
     }),
@@ -28,4 +35,5 @@ export const {
   useGetLocationsQuery,
   useGetLocationQuery,
   useFavoriteLocationMutation,
+  useAddLocationMutation
 } = locationApi;

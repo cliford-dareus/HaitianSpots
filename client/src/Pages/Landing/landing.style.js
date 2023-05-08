@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const LandingSection = styled.section`
+  position: relative;
   width: 100%;
   height: calc(100% - 50px);
   /* background-color: red; */

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   LandingSection,
   LandingSectionCard,
@@ -12,12 +12,17 @@ import {
   SectionTitle,
 } from "./landing.style";
 import Map from "../../Components/Map/map";
+import Modal from "../../Components/LocationModal";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
-import { useFavoriteLocationMutation, useGetLocationsQuery } from "../../features/api/locationApi";
+import {
+  useFavoriteLocationMutation,
+  useGetLocationsQuery,
+} from "../../features/api/locationApi";
 
 const index = () => {
+  const [openModal, setOpenModal] = useState(false);
   const { data, isLoading } = useGetLocationsQuery();
-  const [updateFavorite ] = useFavoriteLocationMutation();
+  const [updateFavorite] = useFavoriteLocationMutation();
 
   return (
     <LandingSection>
@@ -27,7 +32,10 @@ const index = () => {
             Discover <br />
             <span>Haitian</span> Restaurant
           </SectionTitle>
-          <LandingSectionLeftBtn>Add New Place</LandingSectionLeftBtn>
+          <LandingSectionLeftBtn onClick={() => setOpenModal(!openModal)}>
+            Add New Place
+          </LandingSectionLeftBtn>
+          {openModal && <Modal setOpenModal={setOpenModal} />}
         </LandingSectionTextContent>
 
         <LandingSectionContent>
@@ -37,7 +45,7 @@ const index = () => {
               data?.location?.slice(0, 2).map((card) => (
                 <LandingSectionCard
                   key={card._id}
-                  style={{backgroundImage: `url(${card.image})`}}
+                  style={{ backgroundImage: `url(${card.image})` }}
                 >
                   <div>
                     <h3>{card.title}</h3>
@@ -46,14 +54,11 @@ const index = () => {
                     </p>
                   </div>
                   <LandingSectionCardIcon
-                    onClick={()=>{
-                      updateFavorite(card._id)
+                    onClick={() => {
+                      updateFavorite(card._id);
                     }}
-                  >{
-                    card.favorite?
-                    <AiOutlineHeart />:
-                    <AiTwotoneHeart />
-                  }
+                  >
+                    {card.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
                   </LandingSectionCardIcon>
                 </LandingSectionCard>
               ))}
