@@ -12,8 +12,8 @@ export const locationApi = createApi({
       providesTags: ['Location']
     }),
     addLocation: builder.mutation({
-      query: ({data}) => ({
-        url: `location/`,
+      query: (data) => ({
+        url: `location`,
         method: 'POST',
         body: data
       }),

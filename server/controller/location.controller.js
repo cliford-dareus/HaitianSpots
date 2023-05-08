@@ -1,5 +1,5 @@
 const { StatusCodes } = require("http-status-codes");
-const Location = require("../models/location");
+const Location = require("../models/location.model");
 
 const getAllLocations = async (req, res) => {
   const location = await Location.find({});
