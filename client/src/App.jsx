@@ -4,7 +4,8 @@ import Layout from "./Components/Layout";
 import Locations from "./Pages/Locations";
 import Loading from "./Utils/commons/Loading";
 import { GlobalStyles } from "./Utils/styles/GlobalStyles";
-
+import Register from './Pages/Register';
+import Login from './Pages/Login'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Loading />
       <GlobalStyles />
       <Routes>
+        <Route path="/register" element={<Register />}/>
         <Route element={<Layout />}>
           <Route path="/" element={<Landing />} />
           <Route path="/locations" element={<Locations />} />

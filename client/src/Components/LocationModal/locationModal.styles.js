@@ -9,6 +9,7 @@ export const LocationModal = styled.div`
     height: 60%;
     padding: 1em;
     border-radius: 0.5em;
-    background-color: var(--accent--color-200);
+    background-color: var(--bg--primary-800);
     z-index: 9999;
 `;
+

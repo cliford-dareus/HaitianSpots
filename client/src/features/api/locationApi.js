@@ -5,17 +5,17 @@ export const locationApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/api/v1",
   }),
-  tagTypes: ['Location'],
+  tagTypes: ["Location"],
   endpoints: (builder) => ({
     getLocations: builder.query({
       query: () => `/location`,
-      providesTags: ['Location']
+      providesTags: ["Location"],
     }),
     addLocation: builder.mutation({
       query: (data) => ({
         url: `location`,
-        method: 'POST',
-        body: data
+        method: "POST",
+        body: data,
       }),
     }),
     getLocation: builder.query({
@@ -26,7 +26,7 @@ export const locationApi = createApi({
         url: `location/${id}`,
         method: "PATCH",
       }),
-      invalidatesTags: ['Location'],
+      invalidatesTags: ["Location"],
     }),
   }),
 });
@@ -35,5 +35,5 @@ export const {
   useGetLocationsQuery,
   useGetLocationQuery,
   useFavoriteLocationMutation,
-  useAddLocationMutation
+  useAddLocationMutation,
 } = locationApi;

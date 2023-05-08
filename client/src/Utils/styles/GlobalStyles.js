@@ -16,6 +16,7 @@ export const GlobalStyles = createGlobalStyle`
         --accent--color-200: #00B2FF;
 
         --txt--color-100: whitesmoke;
+        --txt--color-200: #eee
 
         --sidebar--width: 20vw;
     }

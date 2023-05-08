@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { LocationModal } from "./locationModal.styles";
+import InputField from "../InputField";
 import { useAddLocationMutation } from "../../features/api/locationApi";
 import { toast } from "react-toastify";
 import { getGeocoding } from "../../Utils/functions/getGeocoding";
+import {
+  InputFieldContainer,
+  LabelField,
+  SelectField,
+} from "../InputField/inputField.styles";
 
 const index = ({ setOpenModal }) => {
+  const user = false;
   const [createLocation, { isLoading, error }] = useAddLocationMutation();
   const [locationInfo, setLocationInfo] = useState({
     name: "",
@@ -21,8 +28,18 @@ const index = ({ setOpenModal }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const { address, ...rest } = locationInfo;
+    // Add toast validations
+    if (!user) {
+      toast("You must be login to add Location!", { type: "error" });
+      return;
+    }
 
+    if (!name || !address) {
+      toast("You must Enter a name or address!", { type: "error" });
+      return;
+    }
+
+    const { address, ...rest } = locationInfo;
     try {
       const { features } = await getGeocoding(address);
       const geoCodedData = {
@@ -44,18 +61,17 @@ const index = ({ setOpenModal }) => {
       <button onClick={() => setOpenModal(false)}>Close</button>
 
       <form onSubmit={onSubmit}>
-        <div>
-          <label htmlFor="">Restaurant Name</label>
-          <input
-            type="text"
-            name="name"
-            value={locationInfo.name}
-            onChange={handleInputs}
-          />
-        </div>
-        <div>
-          <label htmlFor="">Restaurant Speciality</label>
-          <select
+        <InputField
+          fn={handleInputs}
+          label="Restaurant Name"
+          name="name"
+          type="text"
+          value={locationInfo.name}
+        />
+
+        <InputFieldContainer>
+          <LabelField htmlFor="">Restaurant Speciality</LabelField>
+          <SelectField
             value={locationInfo.speciality}
             name="speciality"
             id=""
@@ -68,27 +84,25 @@ const index = ({ setOpenModal }) => {
             <option value="BreakFast">Only BreakFast</option>
             <option value="Lunch">Only Lunch</option>
             <option value="Diner">Only Diner</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="">Address</label>
-          <input
-            type="text"
-            name="address"
-            value={locationInfo.address}
-            onChange={handleInputs}
-          />
-        </div>
+          </SelectField>
+        </InputFieldContainer>
 
-        <div>
-          <label htmlFor="">Image Link</label>
-          <input
-            type="text"
-            name="imageLink"
-            value={locationInfo.image}
-            onChange={handleInputs}
-          />
-        </div>
+        <InputField
+          fn={handleInputs}
+          label="Address"
+          name="address"
+          type="text"
+          value={locationInfo.address}
+        />
+
+        <InputField
+          fn={handleInputs}
+          label="Image Link"
+          name="imageLink"
+          type="text"
+          value={locationInfo.image}
+        />
+
         <div>
           <label htmlFor="">Choose an Image</label>
           <input type="file" onChange={handleInputs} />

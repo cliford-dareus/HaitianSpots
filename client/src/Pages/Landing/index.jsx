@@ -18,11 +18,22 @@ import {
   useFavoriteLocationMutation,
   useGetLocationsQuery,
 } from "../../features/api/locationApi";
+import { toast } from "react-toastify";
 
 const index = () => {
   const [openModal, setOpenModal] = useState(false);
   const { data, isLoading } = useGetLocationsQuery();
   const [updateFavorite] = useFavoriteLocationMutation();
+
+  const user = false;
+
+  const handledFavorite = async (id) => {
+    if (!user) {
+      toast("User not Login", { type: "error" });
+      return
+    }
+    await updateFavorite(id);
+  };
 
   return (
     <LandingSection>
@@ -55,7 +66,7 @@ const index = () => {
                   </div>
                   <LandingSectionCardIcon
                     onClick={() => {
-                      updateFavorite(card._id);
+                      handledFavorite(card._id);
                     }}
                   >
                     {card.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
