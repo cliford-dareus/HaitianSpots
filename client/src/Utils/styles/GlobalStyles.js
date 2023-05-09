@@ -8,15 +8,15 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     :root{
-        --bg--primary-900: black;
+        --bg--primary-900: #000000;
         --bg--primary-800: #1a1a1a;
         --bg--primary-500: #353535;
         --bg--primary-400: #282828;
-
+        
         --accent--color-200: #00B2FF;
 
         --txt--color-100: whitesmoke;
-        --txt--color-200: #eee
+        --txt--color-200: #eee;
 
         --sidebar--width: 20vw;
     }

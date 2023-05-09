@@ -37,6 +37,7 @@ export const HeaderSearchInput = styled.input`
 `;
 
 export const HeaderActions = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1em;
@@ -47,13 +48,41 @@ export const HeaderActions = styled.div`
     justify-content: center;
     font-size: 1.5rem;
     color: var(--txt--color-100);
+    cursor: pointer;
   }
 `;
 
 export const HeaderProfile = styled.div`
+  position: relative;
   height: 40px;
   width: 40px;
   border-radius: 50%;
   margin-left: 1em;
+  overflow: hidden;
+  cursor: pointer;
   background-color: var(--accent--color-200);
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+export const HeaderPopup = styled.div`
+  position: absolute;
+  width: 200px;
+  height: 150px;
+  padding: 1em;
+  border-radius: 0.5em;
+  top: 3.5em;
+  right: 0;
+  z-index: 1000;
+  background-color: var(--bg--primary-400);
+
+  ul{
+    list-style-type: none;
+  }
 `;

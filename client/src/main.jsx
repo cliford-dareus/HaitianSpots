@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <BrowserRouter>
           <App />
-          <ToastContainer position="bottom-center"/>
+          <ToastContainer position="bottom-center" theme="dark"/>
         </BrowserRouter>
       </Provider>
     </UserAuthProvider>

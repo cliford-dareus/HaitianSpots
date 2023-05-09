@@ -19,13 +19,14 @@ import {
   useGetLocationsQuery,
 } from "../../features/api/locationApi";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const index = () => {
   const [openModal, setOpenModal] = useState(false);
   const { data, isLoading } = useGetLocationsQuery();
   const [updateFavorite] = useFavoriteLocationMutation();
-
-  const user = false;
+  const user = useSelector((state) => state.User)
+  console.log(user)
 
   const handledFavorite = async (id) => {
     if (!user) {

@@ -2,17 +2,19 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import InputField from "../../Components/InputField";
-import { registerUser } from "../../Utils/API";
 import {
   AuthButton,
   AuthForm,
   AuthPageContainer,
   AuthPageInner,
 } from "../../Utils/styles/auth.styles";
+import { toast } from "react-toastify";
+import { useRegisterUserMutation } from "../../features/api/authApi";
 
 const index = () => {
+  const [registerUser] = useRegisterUserMutation()
   const [userInfo, setUserInfo] = useState({
-    userName: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -23,12 +25,17 @@ const index = () => {
 
   const register = async (e) => {
     e.preventDefault();
-    const { userName, email, password } = userInfo;
-    if (!userName || !email || !password) return;
+    const { name, email, password } = userInfo;
+    if (!name || !email || !password) {
+      toast('name, email and password is required!')
+      return
+    };
     try {
       const data = await registerUser(userInfo);
+      toast('Account created!', {type: 'error'})
       console.log(data);
     } catch (error) {
+      toast(`${error.message}`, {type: 'error'})
       console.log(error.message);
     }
   };
@@ -39,8 +46,8 @@ const index = () => {
         <h1>Register</h1>
         <AuthForm onSubmit={register}>
           <InputField
-            name="userName"
-            value={userInfo.userName}
+            name="name"
+            value={userInfo.name}
             type="text"
             label="Name"
             fn={handleChange}

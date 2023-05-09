@@ -1,21 +1,23 @@
-import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../Context/userAuthContext";
-import { loginUser } from "../../Utils/API";
+import InputField from "../../Components/InputField";
 import {
   AuthButton,
   AuthForm,
   AuthPageContainer,
   AuthPageInner,
 } from "../../Utils/styles/auth.styles";
-import { InputField } from "../../Components/InputField/inputField.styles";
+import { useLoginUserMutation } from "../../features/api/authApi";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { storeUserInfo } from "../../features/slices/userSlice";
 
 const index = () => {
-  const { saveUserInfo } = useAuthContext();
+  const dispatch = useDispatch();
+  const [loginUser] = useLoginUserMutation();
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
-    email: "",
+    name: "",
     password: "",
   });
 
@@ -25,9 +27,20 @@ const index = () => {
 
   const login = async (e) => {
     e.preventDefault();
+    const { name, password } = userInfo;
+
+    if (!name || !password) {
+      toast("name and password is required!");
+      return;
+    }
+
     try {
-      const data = await loginUser(userInfo);
-      saveUserInfo();
+      const data = await loginUser({ name, password });
+      if (data.error) {
+        toast("Invalid Credentials!");
+        return;
+      }
+      dispatch(storeUserInfo(data.data));
       navigate("/");
     } catch (error) {
       console.log(error.message);
@@ -40,12 +53,13 @@ const index = () => {
         <h1>Login</h1>
         <AuthForm onSubmit={login}>
           <InputField
-            name="email"
-            value={userInfo.email}
+            name="name"
+            value={userInfo.name}
             type="text"
-            label="Email"
+            label="Name"
             fn={handleChange}
           />
+
           <InputField
             name="password"
             value={userInfo.password}
@@ -53,8 +67,7 @@ const index = () => {
             label="Password"
             fn={handleChange}
           />
-
-          <AuthButton>Sign Up</AuthButton>
+          <AuthButton>Sign In</AuthButton>
         </AuthForm>
       </AuthPageInner>
     </AuthPageContainer>
