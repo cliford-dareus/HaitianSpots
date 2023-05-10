@@ -4,6 +4,7 @@ export const locationApi = createApi({
   reducerPath: "locationApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/api/v1",
+    credentials: "include",
   }),
   tagTypes: ["Location"],
   endpoints: (builder) => ({
@@ -11,12 +12,16 @@ export const locationApi = createApi({
       query: () => `/location`,
       providesTags: ["Location"],
     }),
+    getLocationById: builder.query({
+      query: (id) => `/location/${id}`,
+    }),
     addLocation: builder.mutation({
       query: (data) => ({
         url: `location`,
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Location"],
     }),
     getLocation: builder.query({
       query: (title) => `location/filter?title=${title}`,
@@ -33,6 +38,7 @@ export const locationApi = createApi({
 
 export const {
   useGetLocationsQuery,
+  useGetLocationByIdQuery,
   useGetLocationQuery,
   useFavoriteLocationMutation,
   useAddLocationMutation,

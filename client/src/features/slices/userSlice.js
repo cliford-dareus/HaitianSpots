@@ -3,7 +3,7 @@ import { getUserFromLocalStorage } from "../../Utils/functions/getLocalStorage";
 
 const initialState = {
   user: getUserFromLocalStorage(),
-  isLoggedIn: false,
+  isLoggedIn: getUserFromLocalStorage().isLoggedIn,
 };
 
 export const UserSlice = createSlice({
@@ -13,10 +13,18 @@ export const UserSlice = createSlice({
     storeUserInfo(state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;
-      localStorage.setItem('User', JSON.stringify({user: action.payload, isLoggedIn: true}))
+      localStorage.setItem(
+        "User",
+        JSON.stringify({ user: action.payload, isLoggedIn: true })
+      );
+    },
+    removeUserInfo(state) {
+      state.user = {};
+      state.isLoggedIn = false;
+      localStorage.removeItem("User");
     },
   },
 });
 
-export const { storeUserInfo } = UserSlice.actions;
-export default UserSlice.reducer
+export const { storeUserInfo, removeUserInfo } = UserSlice.actions;
+export default UserSlice.reducer;

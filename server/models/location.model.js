@@ -55,7 +55,7 @@ const locationSchema = new mongoose.Schema(
       type: "Boolean",
       default: false,
     },
-    user: {
+    creator: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },

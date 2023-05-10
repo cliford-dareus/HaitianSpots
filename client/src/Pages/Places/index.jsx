@@ -15,7 +15,7 @@ import {
   LocationSectionContentBox,
   LocationSectionContentFilter,
   LocationSectionFilter,
-} from "./locations.styles";
+} from "./places.styles";
 import { IoFilter } from "react-icons/io5";
 import { useGetLocationsQuery } from "../../features/api/locationApi";
 
@@ -25,7 +25,7 @@ const index = () => {
     <LocationSection>
       <SectionTitle>
         Browse <br />
-        All Locations
+        All Places
       </SectionTitle>
 
       <LocationSectionContentBox>
@@ -60,13 +60,13 @@ const index = () => {
 
                 <LocationContentListTextBox>
                   <LocationContentListText>
-                    <h3>{list.title}</h3>
+                    <h3>{list.name}</h3>
                     <p>{list.adress}</p>
                   </LocationContentListText>
 
                   <p>Rating</p>
 
-                  <LocationContentListBtn>View Location</LocationContentListBtn>
+                  <LocationContentListBtn to={`/place/:${list._id}`}>View Location</LocationContentListBtn>
                 </LocationContentListTextBox>
               </LocationContentList>
             ))}

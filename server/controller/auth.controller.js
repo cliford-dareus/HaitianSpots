@@ -30,8 +30,11 @@ const registerUser = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username: username });
+    const { name, password } = req.body;
+    const user = await User.findOne({ userName: name });
+    console.log(name);
+    console.log(user);
+    
     if (!user) {
       return res.status(401).send({
         status: "failure",
@@ -45,7 +48,7 @@ const login = async (req, res) => {
         message: "password is incorrect",
       });
     }
-  
+
     const refreshTokenJWT = createJWT({ payload: { user } });
 
     await User.findByIdAndUpdate(user._id, {
@@ -77,10 +80,21 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
   try {
     const { refreshToken } = req.body;
+
     if (refreshToken) {
       await User.updateOne({ jwtToken: refreshToken }, [
         { $unset: ["jwtToken"] },
       ]);
+
+      res.cookie("accessToken", "logout", {
+        httpOnly: true,
+        expires: new Date(Date.now()),
+      });
+      res.cookie("refreshToken", "logout", {
+        httpOnly: true,
+        expires: new Date(Date.now()),
+      });
+
       res.status(200).send({
         status: "success",
         message: "You've been logged out",

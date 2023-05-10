@@ -111,3 +111,24 @@ export const SideBarBottom = styled.div`
   border-radius: 0.5em 0.5em 0.5em 0;
   background-color: var(--accent--color-200);
 `;
+
+export const SideBarBottomBtn = styled.button`
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5em;
+  border-radius: 0.5em;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--accent--color-200);
+
+  span{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    font-size: 1.5rem;
+    margin-right: .5em;
+  }
+`;

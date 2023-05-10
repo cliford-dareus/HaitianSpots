@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import InputField from "../../Components/InputField";
+import { useNavigate } from "react-router-dom";
 import {
   AuthButton,
   AuthForm,
@@ -9,10 +9,12 @@ import {
 } from "../../Utils/styles/auth.styles";
 import { useLoginUserMutation } from "../../features/api/authApi";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { storeUserInfo } from "../../features/slices/userSlice";
 
 const index = () => {
+  const Navigate = useNavigate();
+  const user = useSelector(state => state.User)
   const dispatch = useDispatch();
   const [loginUser] = useLoginUserMutation();
   const navigate = useNavigate();
@@ -46,6 +48,12 @@ const index = () => {
       console.log(error.message);
     }
   };
+
+  useEffect(() => {
+    if(user.isLoggedIn){
+      Navigate('/')
+    }
+  },[])
 
   return (
     <AuthPageContainer>

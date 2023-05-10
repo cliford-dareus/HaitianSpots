@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 
 const locationRouter = require("./routes/location.routes");
 const authRouter = require("./routes/auth.routes");
+const commentRouter = require("./routes/comment.routes");
 
 const connectDB = require("./db/connect");
 const NotFound = require("./middleware/not-found");
@@ -15,11 +16,16 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 const app = express();
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 app.use(morgan("tiny"));
-app.use(cookieParser(process.env.JWT_SECRET));
+app.use(cookieParser("cookieParser"));
 app.use(helmet());
-app.use(cors({ origin: "*" }));
 
 app.get("/", (req, res) => {
   res.json({ msg: "Welcome to the server side..." });
@@ -27,6 +33,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/location", locationRouter);
+app.use("/api/v1/comment", commentRouter);
 
 app.use(NotFound);
 app.use(errorHandlerMiddleware);

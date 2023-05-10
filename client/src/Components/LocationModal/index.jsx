@@ -11,14 +11,14 @@ import {
 } from "../InputField/inputField.styles";
 
 const index = ({ setOpenModal }) => {
-  const user = false;
+  const user = true;
   const [createLocation, { isLoading, error }] = useAddLocationMutation();
   const [locationInfo, setLocationInfo] = useState({
     name: "",
     speciality: "",
     address: "",
     number: "",
-    imageLink: "",
+    image: "",
   });
 
   const handleInputs = (e) => {
@@ -34,7 +34,7 @@ const index = ({ setOpenModal }) => {
       return;
     }
 
-    if (!name || !address) {
+    if (!locationInfo.name || !locationInfo.address) {
       toast("You must Enter a name or address!", { type: "error" });
       return;
     }
@@ -98,7 +98,7 @@ const index = ({ setOpenModal }) => {
         <InputField
           fn={handleInputs}
           label="Image Link"
-          name="imageLink"
+          name="image"
           type="text"
           value={locationInfo.image}
         />

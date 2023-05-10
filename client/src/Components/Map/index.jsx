@@ -15,7 +15,7 @@ import { MapContainer } from "../../Pages/Landing/landing.style";
 import useUserLocation from "../../Utils/hooks/useUserLocation";
 import { useGetLocationsQuery } from "../../features/api/locationApi";
 
-const Home = ({ isOpen }) => {
+const index = ({ isOpen }) => {
   const { coords, isLoading } = useUserLocation();
   const [isMapReady, setIsMapReady] = useState(false);
   const { data, isSuccess } = useGetLocationsQuery();
@@ -97,7 +97,7 @@ const Home = ({ isOpen }) => {
       <Map
         reuseMaps
         {...viewport}
-        // mapStyle="mapbox://styles/cliford-dareus/clhdu4uit028h01p49p287x74"
+        mapStyle="mapbox://styles/cliford-dareus/clhdu4uit028h01p49p287x74"
         mapboxAccessToken={import.meta.env.VITE_APP_MAPBOX_TOKEN}
         onMove={(evt) => setViewport(evt.viewport)}
       >
@@ -120,4 +120,4 @@ const Home = ({ isOpen }) => {
   );
 };
 
-export default Home;
+export default index;

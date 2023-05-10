@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Landing from "./Pages/Landing";
 import Layout from "./Components/Layout";
-import Locations from "./Pages/Locations";
+import Places from "./Pages/Places";
+import Place from "./Pages/Place";
 import Loading from "./Utils/commons/Loading";
 import { GlobalStyles } from "./Utils/styles/GlobalStyles";
 import Register from "./Pages/Register";
@@ -20,7 +21,8 @@ function App() {
         <Route element={<ProtectedRoutes />}>
           <Route element={<Layout />}>
             <Route path="/" element={<Landing />} />
-            <Route path="/locations" element={<Locations />} />
+            <Route path="/places" element={<Places />} />
+            <Route path="/place/:id" element={<Place />} />
           </Route>
         </Route>
       </Routes>

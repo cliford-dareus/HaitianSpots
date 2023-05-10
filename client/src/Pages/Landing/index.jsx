@@ -11,7 +11,7 @@ import {
   LandingSectionTextContent,
   SectionTitle,
 } from "./landing.style";
-import Map from "../../Components/Map/map";
+import Map from "../../Components/Map";
 import Modal from "../../Components/LocationModal";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import {
@@ -26,7 +26,6 @@ const index = () => {
   const { data, isLoading } = useGetLocationsQuery();
   const [updateFavorite] = useFavoriteLocationMutation();
   const user = useSelector((state) => state.User)
-  console.log(user)
 
   const handledFavorite = async (id) => {
     if (!user) {
@@ -60,7 +59,7 @@ const index = () => {
                   style={{ backgroundImage: `url(${card.image})` }}
                 >
                   <div>
-                    <h3>{card.title}</h3>
+                    <h3>{card.name}</h3>
                     <p>
                       <span>star</span> 3.5
                     </p>

@@ -7,7 +7,13 @@ const getAllLocations = async (req, res) => {
 };
 
 const createLocation = async (req, res) => {
-  const location = await Location.create(req.body);
+  const body = req.body;
+  const user = req.user;
+
+  const location = await Location.create({
+    ...body,
+    creator: user._id,
+  });
   res.status(StatusCodes.CREATED).json({ location });
 };
 
@@ -32,6 +38,22 @@ const updateFavoriteLocation = async (req, res) => {
   });
 
   res.status(200).json(location);
+};
+
+const getLocationById = async (req, res) => {
+  const { id } = req.params;
+  
+  try {
+    const location = await Location.findById(id)
+      .populate("comments")
+      .populate({ path: "creator", select: ["userName", "email"] });
+    res.status(200).json(location);
+  } catch (error) {
+    res.status(401).send({
+      status: "failure",
+      message: "location does not exist!",
+    });
+  }
 };
 
 const getLocation = async (req, res) => {
@@ -85,5 +107,6 @@ module.exports = {
   getAllLocations,
   createLocation,
   getLocation,
+  getLocationById,
   updateFavoriteLocation,
 };

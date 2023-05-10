@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const LocationSection = styled.section`
@@ -112,11 +113,14 @@ export const LocationContentListText = styled.div`
   width: 60%;
 `;
 
-export const LocationContentListBtn = styled.button`
+export const LocationContentListBtn = styled(Link)`
   border: none;
   outline: none;
-  padding: 0.7em 2em;
+  padding: 0.5em 2em;
   border-radius: 0.5em;
   background-color: var(--bg--primary-900);
   border: 1px solid var(--accent--color-200);
+  color: whitesmoke;
+  font-size: .9rem;
+  text-decoration: none;
 `;

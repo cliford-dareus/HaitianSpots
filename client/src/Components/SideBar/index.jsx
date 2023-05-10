@@ -1,6 +1,7 @@
 import React from "react";
 import {
   SideBarBottom,
+  SideBarBottomBtn,
   SideBarContainer,
   SideBarLogo,
   SideBarLogoInner,
@@ -17,8 +18,27 @@ import {
   AiOutlineLogout,
   AiOutlineSetting,
 } from "react-icons/ai";
+import { useLogoutUserMutation } from "../../features/api/authApi";
+import { removeUserInfo } from "../../features/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const index = () => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.User);
+  const [logoutUser] = useLogoutUserMutation();
+
+  const handledLogout = async () => {
+    const refreshToken = token?.user?.refreshTokenJWT;
+    try {
+      await logoutUser({ refreshToken });
+      dispatch(removeUserInfo());
+      toast("Logout successfully", { type: "success" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <SideBarContainer>
       <SideBarTop>
@@ -41,7 +61,7 @@ const index = () => {
             </SideBarNavigationLink>
           </SideBarNavigationItem>
           <SideBarNavigationItem>
-            <SideBarNavigationLink to="/locations">
+            <SideBarNavigationLink to="/places">
               <span>
                 <AiOutlineHome />
               </span>
@@ -49,7 +69,7 @@ const index = () => {
             </SideBarNavigationLink>
           </SideBarNavigationItem>
           <SideBarNavigationItem>
-            <SideBarNavigationLink to="/locations">
+            <SideBarNavigationLink to="/favorites">
               <span>
                 <AiOutlineHome />
               </span>
@@ -75,12 +95,12 @@ const index = () => {
           <p>Setting</p>
         </SideBarNavigationLink>
 
-        <SideBarNavigationLink to="/g">
+        <SideBarBottomBtn onClick={handledLogout}>
           <span>
             <AiOutlineLogout />
           </span>
           <p>Logout</p>
-        </SideBarNavigationLink>
+        </SideBarBottomBtn>
       </SideBarBottom>
     </SideBarContainer>
   );

@@ -4,6 +4,8 @@ export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/api/v1",
+    credentials: 'include',
+
   }),
   tagTypes: ["Auth"],
   endpoints: (builder) => ({
@@ -20,13 +22,12 @@ export const authApi = createApi({
         method: "POST",
         body: data,
       }),
-
     }),
     logoutUser: builder.mutation({
-      query: (id) => ({
-        url: `/auth/logout/${id}`,
-        methode: "POST",
-        credentials: 'include'
+      query: (token) => ({
+        url: "/auth/logout",
+        method: "POST",
+        body: token,
       }),
     }),
   }),
