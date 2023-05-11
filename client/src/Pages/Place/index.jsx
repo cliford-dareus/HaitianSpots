@@ -15,17 +15,43 @@ import {
   PlaceImageGrid,
   PlaceUserContainer,
 } from "./place.styles";
-import Map from "../../Components/Map";
 import { useGetLocationByIdQuery } from "../../features/api/locationApi";
 import InputField from "../../Components/InputField";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { usePostCommentMutation } from "../../features/api/commentApi";
 
 const index = () => {
+  const [comments, setComments] = useState("");
+  const dispatch = useDispatch();
+  const [postComment] = usePostCommentMutation();
   const { pathname } = useLocation();
   const id = pathname.split(":")[1];
-  const { data } = useGetLocationByIdQuery(id);
+  const { data, refetch } = useGetLocationByIdQuery(id);
 
-  // console.log(id)
+  const handledComments = (e) => {
+    setComments(e.target.value);
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!comments) {
+      toast("You can't comment blank");
+      return;
+    }
+    try {
+      await postComment({ locationId: id, comment: comments });
+      setComments("");
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(data)
 
   return (
     <PlaceContainer>
@@ -46,30 +72,42 @@ const index = () => {
         <CommentInner>
           <div>
             <h3>Comments</h3>
-            <InputField fn={() => {}} label="" name="" type="text" value="" />
+            <form action="" onSubmit={onSubmit}>
+              <InputField
+                fn={handledComments}
+                label=""
+                name="comment"
+                type="text"
+                value={comments}
+              />
+            </form>
           </div>
 
           <CommentBox>
-
-            <Comment>
-              <CommentImage></CommentImage>
-              <CommentContent>
-                <h5>Cliford</h5>
-                <p>Lorem ipsum dolor </p>
-                <span>Thu 22</span>
-              </CommentContent>
-              <CommentActions>
-                <span>
-                  <AiOutlineHeart />
-                </span>
-                <span></span>
-              </CommentActions>
-            </Comment>
-            
+            {data?.comments.map((comment) => (
+              <Comment>
+                <CommentImage></CommentImage>
+                <CommentContent>
+                  <h5>Cliford</h5>
+                  <p>{comment.content}</p>
+                  <span>Thu 22</span>
+                </CommentContent>
+                <CommentActions>
+                  <span>
+                    <AiOutlineHeart />
+                  </span>
+                  <span></span>
+                </CommentActions>
+              </Comment>
+            ))}
           </CommentBox>
         </CommentInner>
         <PlaceUserContainer>
-          <h3>user</h3>
+          <h3>Posted By</h3>
+          <div>
+            <p>{data?.creator.userName}</p>
+            <button>Check more from this User</button>
+          </div>
         </PlaceUserContainer>
       </CommentContainer>
     </PlaceContainer>

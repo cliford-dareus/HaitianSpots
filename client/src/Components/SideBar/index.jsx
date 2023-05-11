@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import {
+  ActiveLinkIndicator,
   SideBarBottom,
   SideBarBottomBtn,
   SideBarContainer,
@@ -18,15 +19,17 @@ import {
   AiOutlineLogout,
   AiOutlineSetting,
 } from "react-icons/ai";
+import { sideBarData } from "./SideBarData";
 import { useLogoutUserMutation } from "../../features/api/authApi";
 import { removeUserInfo } from "../../features/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 const index = () => {
-  const dispatch = useDispatch();
   const token = useSelector((state) => state.User);
+  let [activeTab, setActiveTab] = useState(sideBarData[0].id);
   const [logoutUser] = useLogoutUserMutation();
+  const dispatch = useDispatch();
 
   const handledLogout = async () => {
     const refreshToken = token?.user?.refreshTokenJWT;
@@ -52,15 +55,25 @@ const index = () => {
 
       <SideBarMiddle>
         <SideBarNavigation>
-          <SideBarNavigationItem>
-            <SideBarNavigationLink to="/">
-              <span>
-                <AiOutlineHome />
-              </span>
-              <p>Home</p>
-            </SideBarNavigationLink>
-          </SideBarNavigationItem>
-          <SideBarNavigationItem>
+          {sideBarData.map((item) => (
+            <SideBarNavigationItem onClick={() => setActiveTab(item.id)}>
+              <SideBarNavigationLink to={item.to}>
+                <span>
+                  {item.icon}
+                  {/* <AiOutlineHome /> */}
+                </span>
+                <p>{item.name}</p>
+              </SideBarNavigationLink>
+              {activeTab === item.id && (
+                <ActiveLinkIndicator
+                  layoutId="bubble"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                ></ActiveLinkIndicator>
+              )}
+            </SideBarNavigationItem>
+          ))}
+
+          {/* <SideBarNavigationItem>
             <SideBarNavigationLink to="/places">
               <span>
                 <AiOutlineHome />
@@ -83,7 +96,7 @@ const index = () => {
               </span>
               <p>Added</p>
             </SideBarNavigationLink>
-          </SideBarNavigationItem>
+          </SideBarNavigationItem> */}
         </SideBarNavigation>
       </SideBarMiddle>
 

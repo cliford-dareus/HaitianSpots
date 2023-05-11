@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 
 const locationRouter = require("./routes/location.routes");
 const authRouter = require("./routes/auth.routes");
+const userRouter = require("./routes/user.routes");
 const commentRouter = require("./routes/comment.routes");
 
 const connectDB = require("./db/connect");
@@ -32,6 +33,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user", userRouter);
 app.use("/api/v1/location", locationRouter);
 app.use("/api/v1/comment", commentRouter);
 

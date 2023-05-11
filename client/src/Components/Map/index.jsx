@@ -31,7 +31,7 @@ const index = ({ isOpen }) => {
     height: `calc(100vh - ${!isOpen ? `150px` : `55px`}`,
     longitude: null,
     latitude: null,
-    zoom: 15,
+    zoom: 13,
   });
 
   const handlePopup = (location) => {

@@ -7,7 +7,7 @@ export const LandingSection = styled.section`
   /* background-color: red; */
   display: grid;
   grid-template-columns: 35% auto;
-  gap: 1em;
+  gap: 2em;
 `;
 
 export const LandingSectionLeft = styled.div`

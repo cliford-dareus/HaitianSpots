@@ -14,6 +14,7 @@ export const locationApi = createApi({
     }),
     getLocationById: builder.query({
       query: (id) => `/location/${id}`,
+      providesTags: ["Location"],
     }),
     addLocation: builder.mutation({
       query: (data) => ({

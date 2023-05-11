@@ -4,11 +4,11 @@ const Comment = require("../models/comment.model");
 
 const postComment = async (req, res) => {
   const { comment, locationId } = req.body;
-  const userId = req.user._id;
+  const userId = req.user;
 
   const commentCreated = await Comment.create({
     location: locationId,
-    user: userId,
+    user: userId._id,
     content: comment,
   });
 

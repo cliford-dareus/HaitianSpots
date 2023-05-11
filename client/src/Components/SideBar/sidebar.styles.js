@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const SideBarContainer = styled.aside`
   position: absolute;
@@ -67,12 +68,22 @@ export const SideBarNavigation = styled.ul`
 `;
 
 export const SideBarNavigationItem = styled.li`
+  position: relative;
   width: 100%;
   padding: 0.8em 1em;
   cursor: pointer;
+  isolation: isolate;
   &:hover {
     background-color: var(--accent--color-200);
   }
+`;
+
+export const ActiveLinkIndicator = styled(motion.span)`
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--accent--color-200);
+  /* mix-blend-mode: difference; */
 `;
 
 export const SideBarNavigationLink = styled(Link)`
@@ -118,17 +129,17 @@ export const SideBarBottomBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: .5em;
+  padding: 0.5em;
   border-radius: 0.5em;
   font-size: 1rem;
   font-weight: bold;
   color: var(--accent--color-200);
 
-  span{
+  span {
     display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
     font-size: 1.5rem;
-    margin-right: .5em;
+    margin-right: 0.5em;
   }
 `;

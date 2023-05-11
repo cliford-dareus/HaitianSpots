@@ -29,6 +29,8 @@ export const PlaceActiveImage = styled.div`
   width: 80%;
   height: 100%;
   position: relative;
+  border-radius: 0.5em;
+  overflow: hidden;
 
   img {
     position: absolute;
@@ -57,7 +59,7 @@ export const CommentContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1em;
-  border-radius: .5em;
+  border-radius: 0.5em;
   background-color: var(--bg--primary-800);
 `;
 
@@ -72,12 +74,16 @@ export const CommentInner = styled.div`
 
 export const CommentBox = styled.div`
   flex: 1;
-  overflow: hidden;
+  overflow-y: scroll;
+
+  > div:not(:nth-of-type(1)) {
+    margin-top: 1em;
+  }
 `;
 
 export const Comment = styled.div`
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   gap: 1em;
   padding: 1em;
   border-radius: 0.5em;
@@ -96,7 +102,15 @@ export const CommentContent = styled.div`
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  gap: .3em;
+  gap: 0.3em;
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  span {
+    font-size: 0.7rem;
+  }
 `;
 
 export const CommentActions = styled.div`
