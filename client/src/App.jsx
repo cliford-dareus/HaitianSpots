@@ -1,14 +1,17 @@
+import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Landing from "./Pages/Landing";
-import Layout from "./Components/Layout";
-import Places from "./Pages/Places";
-import Place from "./Pages/Place";
+
 import Loading from "./Utils/commons/Loading";
 import { GlobalStyles } from "./Utils/styles/GlobalStyles";
+
+import Landing from "./Pages/Landing";
+import Places from "./Pages/Places";
+import Place from "./Pages/Place";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
+
 import ProtectedRoutes from "./Components/ProtectedRoutes";
-import { forwardRef, useState } from "react";
+import Layout from "./Components/Layout";
 
 function App() {
   const Navigate = useNavigate();
@@ -37,7 +40,6 @@ function App() {
       top: imageDimensions.top,
       left: imageDimensions.left,
     });
-    // setSelectedItemDetails(item)
     Navigate(`/place/:${item?.list?._id}`);
   };
 

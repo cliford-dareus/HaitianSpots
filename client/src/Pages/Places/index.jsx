@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SectionTitle } from "../Landing/landing.style";
 import {
   ContentFilter,
@@ -16,12 +16,32 @@ import {
   LocationSectionContentFilter,
   LocationSectionFilter,
 } from "./places.styles";
+import ActiveLinkIndicator from "../../Components/TabAnimation";
 import { IoFilter } from "react-icons/io5";
 import { useGetLocationsQuery } from "../../features/api/locationApi";
+import useUserLocation from "../../Utils/hooks/useUserLocation";
+import { getDistance } from "../../Utils/functions/getDistance";
+
+const filtersData = ["all", 1, 5, 10, 20, 30];
 
 const index = ({ onItemSelected }) => {
   const { data, isLoading } = useGetLocationsQuery();
-  const imageRef= useRef(null);
+  const [filterData, setFilterData] = useState([]);
+  const [activeFilter, setActiveFilter] = useState(filtersData[0]);
+  const { coords } = useUserLocation();
+  const imageRef = useRef(null);
+
+  const filterByDistance = (filter) => {
+    if (!coords.latitude) {
+      return;
+    }
+    const d = getDistance(coords, data, filter);
+    setFilterData(d);
+  };
+
+  useEffect(() => {
+    setFilterData(data?.location);
+  }, []);
 
   return (
     <LocationSection>
@@ -33,11 +53,20 @@ const index = ({ onItemSelected }) => {
       <LocationSectionContentBox>
         <LocationSectionFilter>
           <FiltersBox>
-            <Filters>1 mile</Filters>
-            <Filters>5 miles</Filters>
-            <Filters>10 miles</Filters>
-            <Filters>20 miles</Filters>
-            <Filters>25 miles</Filters>
+            {filtersData.map((filter) => (
+              <Filters
+                whileHover={{ backgroundColor: "var(--accent--color-200)" }}
+                whileTap={{ scale: 0.9 }}
+                key={filter}
+                onClick={() => {
+                  filterByDistance(filter);
+                  setActiveFilter(filter);
+                }}
+              >
+                {activeFilter === filter && <ActiveLinkIndicator layoutId='bubble2'/>}
+                {filter} {filter == "all" ? "" : "mile"}
+              </Filters>
+            ))}
           </FiltersBox>
 
           <span>
@@ -54,8 +83,17 @@ const index = ({ onItemSelected }) => {
           </LocationSectionContentFilter>
 
           <LocationContentListBox>
-            {data?.location?.map((list, index) => (
-              <LocationContentList key={list._id}>
+            {filterData?.map((list, index) => (
+              <LocationContentList
+                initial={{ opacity: 0, y: -2 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.5 * index,
+                  ease: "easeIn",
+                }}
+                key={list._id}
+              >
                 <LocationContentListImage>
                   <img src={`${list.image}`} alt="" />
                 </LocationContentListImage>
@@ -75,7 +113,7 @@ const index = ({ onItemSelected }) => {
                     whileTap={{
                       scale: 0.9,
                     }}
-                    onClick={(e) => onItemSelected(e,{ list, index })}
+                    onClick={(e) => onItemSelected(e, { list, index })}
                   >
                     View Location
                   </LocationContentListBtn>

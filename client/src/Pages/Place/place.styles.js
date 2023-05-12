@@ -60,6 +60,7 @@ export const CommentContainer = styled(motion.div)`
   flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 1em;
   padding: 1em;
   border-radius: 0.5em;
   background-color: var(--bg--primary-800);
@@ -127,4 +128,7 @@ export const CommentActions = styled.div`
 export const PlaceUserContainer = styled.div`
   flex: 1;
   padding: 1em;
+  border-radius: 0.5em;
+  background-color: var(--accent--color-200);
+  margin-bottom: 2em;
 `;

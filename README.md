@@ -1,5 +1,6 @@
 # HaitianSpots
 #Todo
+- Add categories
 - Add animation for all place
 - Implement filter functionality
   - filter by categories

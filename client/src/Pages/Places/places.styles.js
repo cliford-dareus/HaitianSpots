@@ -33,10 +33,13 @@ export const FiltersBox = styled.div`
   gap: 1em;
 `;
 
-export const Filters = styled.div`
+export const Filters = styled(motion.div)`
+position: relative;
   padding: 0.3em 1.5em;
   border-radius: 0.5em;
   font-size: 0.8rem;
+  cursor: pointer;
+  isolation: isolate;
   background-color: var(--bg--primary-800);
 `;
 
@@ -75,7 +78,7 @@ export const LocationContentListBox = styled.div`
   overflow-y: scroll;
 `;
 
-export const LocationContentList = styled.div`
+export const LocationContentList = styled(motion.div)`
   height: 100px;
   border-radius: 0.5em;
   background-color: var(--bg--primary-500);

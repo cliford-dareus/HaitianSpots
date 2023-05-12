@@ -9,7 +9,7 @@ export const AuthPageContainer = styled.div`
 `;
 
 export const AuthPageInner = styled.div`
-    width: 40%;
+    width: 30%;
     padding: 1em;
     background-color: var(--bg--primary-800);
     border-radius: 0.5em;

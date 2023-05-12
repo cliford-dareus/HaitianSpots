@@ -14,6 +14,7 @@ import LocationPin from "../LocationPin";
 import { MapContainer } from "../../Pages/Landing/landing.style";
 import useUserLocation from "../../Utils/hooks/useUserLocation";
 import { useGetLocationsQuery } from "../../features/api/locationApi";
+import { useSelector } from "react-redux";
 
 const index = ({ isOpen }) => {
   const { coords, isLoading } = useUserLocation();

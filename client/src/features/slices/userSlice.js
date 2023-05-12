@@ -11,11 +11,14 @@ export const UserSlice = createSlice({
   initialState,
   reducers: {
     storeUserInfo(state, action) {
-      state.user = action.payload;
+      state.user = action.payloa;
       state.isLoggedIn = true;
       localStorage.setItem(
         "User",
-        JSON.stringify({ user: action.payload, isLoggedIn: true })
+        JSON.stringify({
+          user: action.payload,
+          isLoggedIn: true,
+        })
       );
     },
     removeUserInfo(state) {

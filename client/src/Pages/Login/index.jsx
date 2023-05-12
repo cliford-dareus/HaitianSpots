@@ -11,8 +11,10 @@ import { useLoginUserMutation } from "../../features/api/authApi";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { storeUserInfo } from "../../features/slices/userSlice";
+import useUserLocation from "../../Utils/hooks/useUserLocation";
 
 const index = () => {
+  const { coords } = useUserLocation()
   const Navigate = useNavigate();
   const user = useSelector(state => state.User)
   const dispatch = useDispatch();

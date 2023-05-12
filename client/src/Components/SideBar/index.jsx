@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  ActiveLinkIndicator,
+  // ActiveLinkIndicator,
   SideBarBottom,
   SideBarBottomBtn,
   SideBarContainer,
@@ -20,6 +20,7 @@ import {
   AiOutlineSetting,
 } from "react-icons/ai";
 import { sideBarData } from "./SideBarData";
+import ActiveLinkIndicator from "../../Components/TabAnimation";
 import { useLogoutUserMutation } from "../../features/api/authApi";
 import { removeUserInfo } from "../../features/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -56,7 +57,10 @@ const index = () => {
       <SideBarMiddle>
         <SideBarNavigation>
           {sideBarData.map((item) => (
-            <SideBarNavigationItem onClick={() => setActiveTab(item.id)}>
+            <SideBarNavigationItem
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+            >
               <SideBarNavigationLink to={item.to}>
                 <span>
                   {item.icon}
@@ -65,10 +69,7 @@ const index = () => {
                 <p>{item.name}</p>
               </SideBarNavigationLink>
               {activeTab === item.id && (
-                <ActiveLinkIndicator
-                  layoutId="bubble"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                ></ActiveLinkIndicator>
+                <ActiveLinkIndicator layoutId="bubble" />
               )}
             </SideBarNavigationItem>
           ))}
@@ -101,7 +102,7 @@ const index = () => {
       </SideBarMiddle>
 
       <SideBarBottom>
-        <SideBarNavigationLink to="/g">
+        <SideBarNavigationLink to="/">
           <span>
             <AiOutlineSetting />
           </span>

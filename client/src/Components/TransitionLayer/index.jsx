@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const index = ({ itemPosition, imageToPosition, setShow, data }) => {
-  console.log(`Image ${imageToPosition}`);
+  // console.log(`Image ${imageToPosition}`);
   return (
     <motion.div
       style={{
@@ -34,7 +34,7 @@ const index = ({ itemPosition, imageToPosition, setShow, data }) => {
           borderRadius: ".5em",
         }}
         transition={{
-          duration: 0.5,
+          duration: .5,
         }}
         onAnimationComplete={() => setShow(true)}
       />

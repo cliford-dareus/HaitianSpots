@@ -81,6 +81,7 @@ export const SideBarNavigationItem = styled.li`
 export const ActiveLinkIndicator = styled(motion.span)`
   position: absolute;
   inset: 0;
+  /* border-radius: 0.5em; */
   z-index: -1;
   background-color: var(--accent--color-200);
   /* mix-blend-mode: difference; */

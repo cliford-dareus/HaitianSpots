@@ -23,14 +23,14 @@ import { useSelector } from "react-redux";
 
 const index = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { data, isLoading } = useGetLocationsQuery();
   const [updateFavorite] = useFavoriteLocationMutation();
-  const user = useSelector((state) => state.User)
+  const { data, isLoading } = useGetLocationsQuery();
+  const user = useSelector((state) => state.User);
 
   const handledFavorite = async (id) => {
     if (!user) {
       toast("User not Login", { type: "error" });
-      return
+      return;
     }
     await updateFavorite(id);
   };

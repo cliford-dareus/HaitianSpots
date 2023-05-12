@@ -137,6 +137,7 @@ const index = ({ itemPosition }) => {
             ))}
           </CommentBox>
         </CommentInner>
+        
         <PlaceUserContainer>
           <h3>Posted By</h3>
           <div>
