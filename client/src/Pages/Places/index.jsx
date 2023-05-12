@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { SectionTitle } from "../Landing/landing.style";
 import {
   ContentFilter,
@@ -19,8 +19,10 @@ import {
 import { IoFilter } from "react-icons/io5";
 import { useGetLocationsQuery } from "../../features/api/locationApi";
 
-const index = () => {
+const index = ({ onItemSelected }) => {
   const { data, isLoading } = useGetLocationsQuery();
+  const imageRef= useRef(null);
+
   return (
     <LocationSection>
       <SectionTitle>
@@ -52,7 +54,7 @@ const index = () => {
           </LocationSectionContentFilter>
 
           <LocationContentListBox>
-            {data?.location?.map((list) => (
+            {data?.location?.map((list, index) => (
               <LocationContentList key={list._id}>
                 <LocationContentListImage>
                   <img src={`${list.image}`} alt="" />
@@ -61,12 +63,22 @@ const index = () => {
                 <LocationContentListTextBox>
                   <LocationContentListText>
                     <h3>{list.name}</h3>
-                    <p>{list.adress}</p>
+                    <p>{list.address}</p>
                   </LocationContentListText>
 
                   <p>Rating</p>
 
-                  <LocationContentListBtn to={`/place/:${list._id}`}>View Location</LocationContentListBtn>
+                  <LocationContentListBtn
+                    whileHover={{
+                      backgroundColor: "var(--accent--color-200)",
+                    }}
+                    whileTap={{
+                      scale: 0.9,
+                    }}
+                    onClick={(e) => onItemSelected(e,{ list, index })}
+                  >
+                    View Location
+                  </LocationContentListBtn>
                 </LocationContentListTextBox>
               </LocationContentList>
             ))}

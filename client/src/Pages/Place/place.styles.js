@@ -1,14 +1,16 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const PlaceContainer = styled.section`
+export const PlaceContainer = styled(motion.section)`
   width: 100%;
   height: 100%;
   padding-top: 3em;
   display: flex;
   gap: 1em;
+  position: relative;
 `;
 
-export const PlaceContentContainer = styled.div`
+export const PlaceContentContainer = styled(motion.div)`
   width: 65%;
   height: 90.5%;
   display: flex;
@@ -54,7 +56,7 @@ export const PlaceContentText = styled.div`
   /* background-color: red; */
 `;
 
-export const CommentContainer = styled.div`
+export const CommentContainer = styled(motion.div)`
   flex: 1;
   display: flex;
   flex-direction: column;

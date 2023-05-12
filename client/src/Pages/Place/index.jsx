@@ -17,17 +17,32 @@ import {
 } from "./place.styles";
 import { useGetLocationByIdQuery } from "../../features/api/locationApi";
 import InputField from "../../Components/InputField";
+import TransitionLayer from "../../Components/TransitionLayer";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { usePostCommentMutation } from "../../features/api/commentApi";
+import { AnimatePresence } from "framer-motion";
 
-const index = () => {
-  const [comments, setComments] = useState("");
-  const dispatch = useDispatch();
+const variants = {
+  show: {
+    opacity: 1
+  },
+  hide: {
+    opacity: 0
+  },
+};
+
+const index = ({ itemPosition }) => {
+  const [imagePosition, setImagePosition] = useState({});
   const [postComment] = usePostCommentMutation();
+  const [comments, setComments] = useState("");
+  const [show, setShow] = useState(false);
   const { pathname } = useLocation();
+  const imageRef = useRef(null);
+  const dispatch = useDispatch();
+
   const id = pathname.split(":")[1];
   const { data, refetch } = useGetLocationByIdQuery(id);
 
@@ -51,14 +66,34 @@ const index = () => {
     }
   };
 
-  console.log(data)
+  useEffect(() => {
+    const imageDimensions = imageRef?.current?.getBoundingClientRect();
+
+    setImagePosition({
+      width: imageDimensions.width,
+      height: imageDimensions.height,
+      top: imageDimensions.top,
+      left: imageDimensions.left,
+    });
+  }, []);
 
   return (
-    <PlaceContainer>
-      <PlaceContentContainer>
+    <PlaceContainer animate={show ? "show" : "hide"}>
+      <AnimatePresence>
+        {itemPosition?.containerPosition && itemPosition.imagePosition && (
+          <TransitionLayer
+            setShow={setShow}
+            itemPosition={itemPosition}
+            imageToPosition={imagePosition}
+            data={imageRef?.current?.currentSrc}
+          />
+        )}
+      </AnimatePresence>
+
+      <PlaceContentContainer variants={variants}>
         <PlaceImageContainer>
           <PlaceActiveImage>
-            <img src={`${data?.image}`} alt="" />
+            <img src={`${data?.image}`} ref={imageRef} alt="" />
           </PlaceActiveImage>
           {/* Grid for more image */}
           <PlaceImageGrid></PlaceImageGrid>
@@ -68,7 +103,7 @@ const index = () => {
         </PlaceContentText>
       </PlaceContentContainer>
 
-      <CommentContainer>
+      <CommentContainer >
         <CommentInner>
           <div>
             <h3>Comments</h3>

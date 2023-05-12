@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -113,7 +114,7 @@ export const LocationContentListText = styled.div`
   width: 60%;
 `;
 
-export const LocationContentListBtn = styled(Link)`
+export const LocationContentListBtn = styled(motion.div)`
   border: none;
   outline: none;
   padding: 0.5em 2em;
