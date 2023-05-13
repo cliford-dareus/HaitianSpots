@@ -46,7 +46,7 @@ position: relative;
 export const LocationSectionContent = styled.div`
   height: 100%;
   display: flex;
-  gap: 1em;
+  gap: 1.5em;
   margin-top: 1em;
 `;
 
@@ -85,6 +85,7 @@ export const LocationContentList = styled(motion.div)`
   display: flex;
   gap: 1em;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const LocationContentListImage = styled.div`

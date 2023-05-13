@@ -11,6 +11,6 @@ export const LayoutContainer = styled.div`
 export const MainContent = styled.main`
     width: 100%;
     height: 100%;
-    padding: 1em;
+    padding: 1em 1.5em;
     position: relative;
 `;

@@ -9,6 +9,7 @@ import Places from "./Pages/Places";
 import Place from "./Pages/Place";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
+import Favorites from './Pages/Favorites';
 
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import Layout from "./Components/Layout";
@@ -64,6 +65,7 @@ function App() {
                 <Place itemPosition={{containerPosition, imagePosition}} />
               }
             />
+            <Route path="/favorites" element={<Favorites />} />
           </Route>
         </Route>
       </Routes>

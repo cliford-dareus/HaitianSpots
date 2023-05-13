@@ -31,7 +31,7 @@ export const SideBarTop = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  padding-inline: 1em;
+  padding-inline: 1.5em;
   text-transform: uppercase;
 `;
 
@@ -43,12 +43,12 @@ export const SideBarLogo = styled(Link)`
 `;
 
 export const SideBarLogoInner = styled.span`
-  font-size: 3rem;
+  font-size: 2.55rem;
   color: var(--accent--color-200);
 `;
 
 export const SideBarLogoText = styled.span`
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: var(--txt--color-100);
 `;
@@ -70,7 +70,7 @@ export const SideBarNavigation = styled.ul`
 export const SideBarNavigationItem = styled.li`
   position: relative;
   width: 100%;
-  padding: 0.8em 1em;
+  padding: 0.8em 1.5em;
   cursor: pointer;
   isolation: isolate;
   &:hover {
@@ -114,7 +114,7 @@ export const SideBarBottom = styled.div`
   height: 150px;
   bottom: 0;
   left: 0;
-  padding: 1em;
+  padding: 1.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;

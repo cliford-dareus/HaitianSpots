@@ -1,11 +1,11 @@
-import { getAllLocations } from "../Utils/API";
+import { getAllLocations } from "../API";
 
 export const getLocations = async () => {
   const locations = await getAllLocations();
   return locations;
 };
 
-// To erase
+
 export const geojsonData = {
   id: "Route",
   type: "line",
