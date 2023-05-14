@@ -16,11 +16,13 @@ import {
   LocationSectionContentFilter,
   LocationSectionFilter,
 } from "./places.styles";
-import ActiveLinkIndicator from "../../Components/TabAnimation";
 import { IoFilter } from "react-icons/io5";
+import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import ActiveLinkIndicator from "../../Components/TabAnimation";
 import { useGetLocationsQuery } from "../../features/api/locationApi";
 import useUserLocation from "../../Utils/hooks/useUserLocation";
 import { getDistance } from "../../Utils/functions/getDistance";
+import { FavoriteListAction } from "../Favorites/favorite.styles";
 
 const filtersData = ["all", 1, 5, 10, 20, 30];
 
@@ -63,7 +65,9 @@ const index = ({ onItemSelected }) => {
                   setActiveFilter(filter);
                 }}
               >
-                {activeFilter === filter && <ActiveLinkIndicator layoutId='bubble2'/>}
+                {activeFilter === filter && (
+                  <ActiveLinkIndicator layoutId="bubble2" rounded="false" />
+                )}
                 {filter} {filter == "all" ? "" : "mile"}
               </Filters>
             ))}
@@ -106,6 +110,9 @@ const index = ({ onItemSelected }) => {
 
                   <p>Rating</p>
 
+                  <FavoriteListAction>
+                    {!list.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
+                  </FavoriteListAction>
                   <LocationContentListBtn
                     whileHover={{
                       backgroundColor: "var(--accent--color-200)",
@@ -115,7 +122,7 @@ const index = ({ onItemSelected }) => {
                     }}
                     onClick={(e) => onItemSelected(e, { list, index })}
                   >
-                    View Location
+                    View
                   </LocationContentListBtn>
                 </LocationContentListTextBox>
               </LocationContentList>

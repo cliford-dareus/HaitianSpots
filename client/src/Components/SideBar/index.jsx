@@ -69,7 +69,7 @@ const index = () => {
                 <p>{item.name}</p>
               </SideBarNavigationLink>
               {activeTab === item.id && (
-                <ActiveLinkIndicator layoutId="bubble" />
+                <ActiveLinkIndicator layoutId="bubble" rounded='true'/>
               )}
             </SideBarNavigationItem>
           ))}

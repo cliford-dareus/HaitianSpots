@@ -70,7 +70,7 @@ export const SideBarNavigation = styled.ul`
 export const SideBarNavigationItem = styled.li`
   position: relative;
   width: 100%;
-  padding: 0.8em 1.5em;
+  
   cursor: pointer;
   isolation: isolate;
   &:hover {
@@ -81,16 +81,17 @@ export const SideBarNavigationItem = styled.li`
 export const ActiveLinkIndicator = styled(motion.span)`
   position: absolute;
   inset: 0;
-  /* border-radius: 0.5em; */
   z-index: -1;
   background-color: var(--accent--color-200);
-  /* mix-blend-mode: difference; */
+  border-radius: ${(props) => (props.rounded ? "0" : "0.5em")};
 `;
 
 export const SideBarNavigationLink = styled(Link)`
+  height: 100%;
   color: var(--txt--color-100);
   display: flex;
   align-items: center;
+  padding: 0.8em 1.5em;
   gap: 1em;
   text-decoration: none;
 

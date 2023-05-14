@@ -106,9 +106,11 @@ export const LocationContentListImage = styled.div`
 `;
 
 export const LocationContentListTextBox = styled.div`
+position: relative;
   height: 100%;
   flex: 1;
   padding: 1em;
+  padding-right: 9em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -121,7 +123,7 @@ export const LocationContentListText = styled.div`
 export const LocationContentListBtn = styled(motion.div)`
   border: none;
   outline: none;
-  padding: 0.5em 2em;
+  padding: 0.5em 1em;
   border-radius: 0.5em;
   background-color: var(--bg--primary-900);
   border: 1px solid var(--accent--color-200);
