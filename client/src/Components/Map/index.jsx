@@ -4,10 +4,9 @@ import "mapbox-gl/dist/mapbox-gl.css";
 // import Loading from "../Components/Loading";
 
 import {
-  getLocations,
   geojsonData,
   startingLayer,
-} from "../../helper/FetchLocation";
+} from "../../Utils/commons/mapGeoData";
 
 import UserPin from "../UserPin";
 import LocationPin from "../LocationPin";

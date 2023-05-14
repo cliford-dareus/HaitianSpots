@@ -69,7 +69,7 @@ const index = () => {
                       handledFavorite(card._id);
                     }}
                   >
-                    {card.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
+                    {!card.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
                   </LandingSectionCardIcon>
                 </LandingSectionCard>
               ))}

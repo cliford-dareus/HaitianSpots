@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const LocationSection = styled.section`
   width: 100%;
   height: calc(100% - 50px);
-  padding-top: 2em;
+  padding-top: 3em;
 `;
 
 export const LocationSectionContentBox = styled.div`
@@ -34,7 +34,7 @@ export const FiltersBox = styled.div`
 `;
 
 export const Filters = styled(motion.div)`
-position: relative;
+  position: relative;
   padding: 0.3em 1.5em;
   border-radius: 0.5em;
   font-size: 0.8rem;
@@ -96,7 +96,7 @@ export const LocationContentListImage = styled.div`
   background-color: gray;
   border-radius: 0.5em;
 
-  img{
+  img {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -126,6 +126,6 @@ export const LocationContentListBtn = styled(motion.div)`
   background-color: var(--bg--primary-900);
   border: 1px solid var(--accent--color-200);
   color: whitesmoke;
-  font-size: .9rem;
+  font-size: 0.9rem;
   text-decoration: none;
 `;
