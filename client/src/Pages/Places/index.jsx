@@ -19,19 +19,33 @@ import {
 import { IoFilter } from "react-icons/io5";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import ActiveLinkIndicator from "../../Components/TabAnimation";
-import { useGetLocationsQuery } from "../../features/api/locationApi";
+import {
+  useFavoriteLocationMutation,
+  useGetLocationsQuery,
+} from "../../features/api/locationApi";
 import useUserLocation from "../../Utils/hooks/useUserLocation";
 import { getDistance } from "../../Utils/functions/getDistance";
 import { FavoriteListAction } from "../Favorites/favorite.styles";
+import { useSelector } from "react-redux";
 
 const filtersData = ["all", 1, 5, 10, 20, 30];
 
 const index = ({ onItemSelected }) => {
-  const { data, isLoading } = useGetLocationsQuery();
+  const { data, isLoading, isFetching } = useGetLocationsQuery();
+  const [updateFavorite] = useFavoriteLocationMutation();
   const [filterData, setFilterData] = useState([]);
   const [activeFilter, setActiveFilter] = useState(filtersData[0]);
   const { coords } = useUserLocation();
+  const user = useSelector((state) => state.User);
   const imageRef = useRef(null);
+
+  const handledFavorite = async (id) => {
+    if (!user) {
+      toast("User not Login", { type: "error" });
+      return;
+    }
+    await updateFavorite(id);
+  };
 
   const filterByDistance = (filter) => {
     if (!coords.latitude) {
@@ -43,7 +57,7 @@ const index = ({ onItemSelected }) => {
 
   useEffect(() => {
     setFilterData(data?.location);
-  }, []);
+  }, [data]);
 
   return (
     <LocationSection>
@@ -87,46 +101,54 @@ const index = ({ onItemSelected }) => {
           </LocationSectionContentFilter>
 
           <LocationContentListBox>
-            {filterData?.map((list, index) => (
-              <LocationContentList
-                initial={{ opacity: 0, y: -2 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.3 * index,
-                  ease: "easeIn",
-                }}
-                key={list._id}
-              >
-                <LocationContentListImage>
-                  <img src={`${list.image}`} alt="" />
-                </LocationContentListImage>
-
-                <LocationContentListTextBox>
-                  <LocationContentListText>
-                    <h3>{list.name}</h3>
-                    <p>{list.address}</p>
-                  </LocationContentListText>
-
-                  <p>Rating</p>
-
-                  <FavoriteListAction>
-                    {!list.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
-                  </FavoriteListAction>
-                  <LocationContentListBtn
-                    whileHover={{
-                      backgroundColor: "var(--accent--color-200)",
+            {!isLoading
+              ? filterData?.map((list, index) => (
+                  <LocationContentList
+                    initial={{ opacity: 0, y: -2 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.2 * index,
+                      ease: "easeIn",
                     }}
-                    whileTap={{
-                      scale: 0.9,
-                    }}
-                    onClick={(e) => onItemSelected(e, { list, index })}
+                    key={list._id}
                   >
-                    View
-                  </LocationContentListBtn>
-                </LocationContentListTextBox>
-              </LocationContentList>
-            ))}
+                    <LocationContentListImage>
+                      <img src={`${list.image}`} alt="" />
+                    </LocationContentListImage>
+
+                    <LocationContentListTextBox>
+                      <LocationContentListText>
+                        <h3>{list.name}</h3>
+                        <p>{list.address}</p>
+                      </LocationContentListText>
+
+                      <p>Rating</p>
+
+                      <FavoriteListAction
+                        onClick={() => handledFavorite(list._id)}
+                      >
+                        {!list.favorite ? (
+                          <AiOutlineHeart />
+                        ) : (
+                          <AiTwotoneHeart />
+                        )}
+                      </FavoriteListAction>
+                      <LocationContentListBtn
+                        whileHover={{
+                          backgroundColor: "var(--accent--color-200)",
+                        }}
+                        whileTap={{
+                          scale: 0.9,
+                        }}
+                        onClick={(e) => onItemSelected(e, { list, index })}
+                      >
+                        View
+                      </LocationContentListBtn>
+                    </LocationContentListTextBox>
+                  </LocationContentList>
+                ))
+              : null}
           </LocationContentListBox>
         </LocationSectionContent>
       </LocationSectionContentBox>

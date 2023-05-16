@@ -17,13 +17,15 @@ import {
 } from "../Landing/landing.style";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import { Filters, FiltersBox } from "../Places/places.styles";
-import { useGetLocationsQuery } from "../../features/api/locationApi";
+import { useFavoriteLocationMutation, useGetLocationsQuery } from "../../features/api/locationApi";
+import ActiveLinkIndicator from "../../Components/TabAnimation";
 
-const filter = [1, 2, 3, 4, 5];
+const filter = [0, 1, 2, 3, 4, 5];
 
 const index = () => {
+  const [updateFavorite] = useFavoriteLocationMutation();
   const { data, isLoading, isSuccess } = useGetLocationsQuery();
-  const [tabSelected, setTabSelected] = useState(filter[0])
+  const [tabSelected, setTabSelected] = useState(filter[0]);
   const [favoriteList, setFavoriteList] = useState([]);
   const [selectedList, setSelectedList] = useState([]);
 
@@ -32,9 +34,10 @@ const index = () => {
       return data?.location?.filter((x) => x.favorite === true);
     };
     setFavoriteList(filterData);
-  }, []);
+  }, [data]);
 
   useEffect(() => {
+    if (!favoriteList) return;
     setSelectedList(favoriteList[0]);
   }, [favoriteList]);
 
@@ -46,11 +49,14 @@ const index = () => {
         </SectionTitle>
 
         <FavoriteContentBox>
-          <FiltersBox
-            onClick={()=> {}}
-          >
-            {filter.map((x) => (
-              <Filters key={x}>{x}</Filters>
+          <FiltersBox onClick={() => {}}>
+            {filter.map((x, index) => (
+              <Filters key={x}>
+                {x}
+                {tabSelected == index && (
+                  <ActiveLinkIndicator layoutId="bubble2" rounded="false" />
+                )}
+              </Filters>
             ))}
           </FiltersBox>
 
@@ -66,7 +72,9 @@ const index = () => {
                   }
                 >
                   <h3>{x.name}</h3>
-                  <FavoriteListAction>
+                  <FavoriteListAction
+                    onClick={() => updateFavorite(x._id)}
+                  >
                     {!x.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
                   </FavoriteListAction>
                 </FavoriteList>
