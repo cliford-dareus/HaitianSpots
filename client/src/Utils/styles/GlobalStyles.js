@@ -27,6 +27,10 @@ export const GlobalStyles = createGlobalStyle`
         color: var(--txt--color-100);
     }
 
+    a{
+        text-decoration: none;
+    }
+
     .mapboxgl-popup-content{
         padding: 0;
         border-radius: 1em;

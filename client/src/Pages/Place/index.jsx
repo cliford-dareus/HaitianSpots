@@ -1,11 +1,6 @@
 import { useLocation } from "react-router-dom";
 import {
-  Comment,
-  CommentActions,
-  CommentBox,
   CommentContainer,
-  CommentContent,
-  CommentImage,
   CommentInner,
   PlaceActiveImage,
   PlaceContainer,
@@ -18,6 +13,7 @@ import {
 import { useGetLocationByIdQuery } from "../../features/api/locationApi";
 import InputField from "../../Components/InputField";
 import TransitionLayer from "../../Components/TransitionLayer";
+import CommentBox from "../../Components/Comment";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
@@ -27,10 +23,10 @@ import { AnimatePresence } from "framer-motion";
 
 const variants = {
   show: {
-    opacity: 1
+    opacity: 1,
   },
   hide: {
-    opacity: 0
+    opacity: 0,
   },
 };
 
@@ -103,7 +99,7 @@ const index = ({ itemPosition }) => {
         </PlaceContentText>
       </PlaceContentContainer>
 
-      <CommentContainer >
+      <CommentContainer>
         <CommentInner>
           <div>
             <h3>Comments</h3>
@@ -118,26 +114,9 @@ const index = ({ itemPosition }) => {
             </form>
           </div>
 
-          <CommentBox>
-            {data?.comments.map((comment) => (
-              <Comment>
-                <CommentImage></CommentImage>
-                <CommentContent>
-                  <h5>Cliford</h5>
-                  <p>{comment.content}</p>
-                  <span>Thu 22</span>
-                </CommentContent>
-                <CommentActions>
-                  <span>
-                    <AiOutlineHeart />
-                  </span>
-                  <span></span>
-                </CommentActions>
-              </Comment>
-            ))}
-          </CommentBox>
+          <CommentBox data={data} />
         </CommentInner>
-        
+
         <PlaceUserContainer>
           <h3>Posted By</h3>
           <div>

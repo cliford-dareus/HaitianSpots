@@ -46,7 +46,8 @@ export const FavoriteListAction = styled.div`
   top: 0;
   right: -3px;
   bottom: 0;
-  width: 15%;
+  z-index: 222;
+  width: 10%;
   display: flex;
   justify-content: center;
   align-items: center;

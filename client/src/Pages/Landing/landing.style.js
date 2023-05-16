@@ -74,6 +74,17 @@ export const LandingSectionLeftBtn = styled.button`
   font-size: 1.1rem;
   margin-top: 1em;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+
+  span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+  }
 `;
 
 export const SectionTitle = styled.h1`

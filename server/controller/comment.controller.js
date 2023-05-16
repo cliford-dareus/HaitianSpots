@@ -6,6 +6,8 @@ const postComment = async (req, res) => {
   const { comment, locationId } = req.body;
   const userId = req.user;
 
+  console.log(comment)
+
   const commentCreated = await Comment.create({
     location: locationId,
     user: userId._id,

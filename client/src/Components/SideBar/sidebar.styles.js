@@ -123,6 +123,10 @@ export const SideBarBottom = styled.div`
   gap: 1em;
   border-radius: 0.5em 0.5em 0.5em 0;
   background-color: var(--accent--color-200);
+
+  a{
+    padding-inline: 0;
+  }
 `;
 
 export const SideBarBottomBtn = styled.button`

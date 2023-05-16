@@ -13,7 +13,7 @@ import {
 } from "./landing.style";
 import Map from "../../Components/Map";
 import Modal from "../../Components/LocationModal";
-import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlinePlus, AiTwotoneHeart } from "react-icons/ai";
 import {
   useFavoriteLocationMutation,
   useGetLocationsQuery,
@@ -44,6 +44,9 @@ const index = () => {
             <span>Haitian</span> Restaurant
           </SectionTitle>
           <LandingSectionLeftBtn onClick={() => setOpenModal(!openModal)}>
+            <span>
+              <AiOutlinePlus />
+            </span>
             Add New Place
           </LandingSectionLeftBtn>
           {openModal && <Modal setOpenModal={setOpenModal} />}

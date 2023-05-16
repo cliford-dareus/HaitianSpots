@@ -27,14 +27,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 const index = () => {
-  const token = useSelector((state) => state.User);
+  const token = useSelector((state) => state.User.user);
   let [activeTab, setActiveTab] = useState(sideBarData[0].id);
   const [logoutUser] = useLogoutUserMutation();
   const dispatch = useDispatch();
 
+  
   const handledLogout = async () => {
-    const refreshToken = token?.user?.refreshTokenJWT;
     try {
+      const refreshToken = token?.refreshTokenJWT;
       await logoutUser({ refreshToken });
       dispatch(removeUserInfo());
       toast("Logout successfully", { type: "success" });

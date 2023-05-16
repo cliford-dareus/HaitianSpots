@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const LocationSection = styled.section`
@@ -9,7 +8,6 @@ export const LocationSection = styled.section`
 `;
 
 export const LocationSectionContentBox = styled.div`
-  /* background-color: red; */
   height: calc(100% - 112px);
   padding-top: 1em;
 `;
@@ -79,13 +77,18 @@ export const LocationContentListBox = styled.div`
 `;
 
 export const LocationContentList = styled(motion.div)`
+  position: relative;
   height: 100px;
   border-radius: 0.5em;
   background-color: var(--bg--primary-500);
-  display: flex;
-  gap: 1em;
-  align-items: center;
   cursor: pointer;
+`;
+
+export const LocationContentListInner = styled.div`
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  display: flex;
 `;
 
 export const LocationContentListImage = styled.div`
@@ -106,7 +109,6 @@ export const LocationContentListImage = styled.div`
 `;
 
 export const LocationContentListTextBox = styled.div`
-position: relative;
   height: 100%;
   flex: 1;
   padding: 1em;

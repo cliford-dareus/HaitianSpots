@@ -11,7 +11,7 @@ export const UserSlice = createSlice({
   initialState,
   reducers: {
     storeUserInfo(state, action) {
-      state.user = action.payloa;
+      state.user = action.payload;
       state.isLoggedIn = true;
       localStorage.setItem(
         "User",

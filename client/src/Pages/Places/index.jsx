@@ -8,6 +8,7 @@ import {
   LocationContentListBox,
   LocationContentListBtn,
   LocationContentListImage,
+  LocationContentListInner,
   LocationContentListText,
   LocationContentListTextBox,
   LocationSection,
@@ -113,39 +114,28 @@ const index = ({ onItemSelected }) => {
                     }}
                     key={list._id}
                   >
-                    <LocationContentListImage>
-                      <img src={`${list.image}`} alt="" />
-                    </LocationContentListImage>
+                    <LocationContentListInner
+                      onClick={(e) => onItemSelected(e, { list, index })}
+                    >
+                      <LocationContentListImage>
+                        <img src={`${list.image}`} alt="" />
+                      </LocationContentListImage>
 
-                    <LocationContentListTextBox>
-                      <LocationContentListText>
-                        <h3>{list.name}</h3>
-                        <p>{list.address}</p>
-                      </LocationContentListText>
+                      <LocationContentListTextBox>
+                        <LocationContentListText>
+                          <h3>{list.name}</h3>
+                          <p>{list.address}</p>
+                        </LocationContentListText>
 
-                      <p>Rating</p>
+                        <p>Rating</p>
+                      </LocationContentListTextBox>
+                    </LocationContentListInner>
 
-                      <FavoriteListAction
-                        onClick={() => handledFavorite(list._id)}
-                      >
-                        {!list.favorite ? (
-                          <AiOutlineHeart />
-                        ) : (
-                          <AiTwotoneHeart />
-                        )}
-                      </FavoriteListAction>
-                      <LocationContentListBtn
-                        whileHover={{
-                          backgroundColor: "var(--accent--color-200)",
-                        }}
-                        whileTap={{
-                          scale: 0.9,
-                        }}
-                        onClick={(e) => onItemSelected(e, { list, index })}
-                      >
-                        View
-                      </LocationContentListBtn>
-                    </LocationContentListTextBox>
+                    <FavoriteListAction
+                      onClick={() => handledFavorite(list._id)}
+                    >
+                      {!list.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
+                    </FavoriteListAction>
                   </LocationContentList>
                 ))
               : null}

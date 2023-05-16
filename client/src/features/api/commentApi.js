@@ -14,7 +14,6 @@ export const commentApi = createApi({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Location"],
     }),
   }),
 });
