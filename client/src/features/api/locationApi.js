@@ -25,7 +25,7 @@ export const locationApi = createApi({
       invalidatesTags: ["Location"],
     }),
     getLocation: builder.query({
-      query: (title) => `location/filter?title=${title}`,
+      query: (name) => `/location/filter?name=${name}`,
     }),
     favoriteLocation: builder.mutation({
       query: (id) => ({

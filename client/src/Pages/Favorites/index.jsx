@@ -17,8 +17,12 @@ import {
 } from "../Landing/landing.style";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import { Filters, FiltersBox } from "../Places/places.styles";
-import { useFavoriteLocationMutation, useGetLocationsQuery } from "../../features/api/locationApi";
+import {
+  useFavoriteLocationMutation,
+  useGetLocationsQuery,
+} from "../../features/api/locationApi";
 import ActiveLinkIndicator from "../../Components/TabAnimation";
+import { AnimatePresence } from "framer-motion";
 
 const filter = [0, 1, 2, 3, 4, 5];
 
@@ -60,31 +64,32 @@ const index = () => {
             ))}
           </FiltersBox>
 
-          <FavoriteListContainer>
-            {!isLoading ? (
-              favoriteList?.map((x) => (
-                <FavoriteList
-                  onClick={() => setSelectedList(x)}
-                  style={
-                    selectedList?._id === x?._id
-                      ? { border: "1px solid var(--accent--color-200)" }
-                      : { border: "none" }
-                  }
-                >
-                  <h3>{x.name}</h3>
-                  <FavoriteListAction
-                    onClick={() => updateFavorite(x._id)}
+          <AnimatePresence>
+            <FavoriteListContainer>
+              {!isLoading ? (
+                favoriteList?.map((x) => (
+                  <FavoriteList
+                    key={x}
+                    onClick={() => setSelectedList(x)}
+                    style={
+                      selectedList?._id === x?._id
+                        ? { border: "1px solid var(--accent--color-200)" }
+                        : { border: "none" }
+                    }
                   >
-                    {!x.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
-                  </FavoriteListAction>
+                    <h3>{x.name}</h3>
+                    <FavoriteListAction onClick={() => updateFavorite(x._id)}>
+                      {!x.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
+                    </FavoriteListAction>
+                  </FavoriteList>
+                ))
+              ) : (
+                <FavoriteList>
+                  <FavoriteListAction></FavoriteListAction>
                 </FavoriteList>
-              ))
-            ) : (
-              <FavoriteList>
-                <FavoriteListAction></FavoriteListAction>
-              </FavoriteList>
-            )}
-          </FavoriteListContainer>
+              )}
+            </FavoriteListContainer>
+          </AnimatePresence>
           <FavoriteListContainerActions>
             <button>Left</button>
             <button>Rigth</button>

@@ -3,15 +3,14 @@ import styled from "styled-components";
 export const HeaderContainer = styled.header`
   width: 100%;
   height: 50px;
-  /* background-color: red; */
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
 export const HeaderSearch = styled.div`
-  height: 35px;
-  width: 35%;
+  height: 100%;
+  width: 100%;
   padding: 0 1em;
   background-color: var(--bg--primary-500);
   border-radius: 0.5em;

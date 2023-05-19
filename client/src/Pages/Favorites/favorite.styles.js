@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const FavoritesContainer = styled.section`
@@ -16,7 +17,7 @@ export const FavoriteContentBox = styled.div`
   margin-top: 1em;
 `;
 
-export const FavoriteListContainer = styled.div`
+export const FavoriteListContainer = styled(motion.div)`
   position: relative;
   height: 70%;
   display: flex;
@@ -33,12 +34,13 @@ export const FavoriteListContainerActions = styled.div`
 export const FavoriteList = styled.div`
   position: relative;
   width: 100%;
-  min-height: 60px;
+  /* min-height: 60px; */
   background-color: var(--bg--primary-800);
   border-radius: 0.5em;
   display: flex;
   align-items: center;
   padding: 1em;
+  cursor: pointer;
 `;
 
 export const FavoriteListAction = styled.div`

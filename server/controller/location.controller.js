@@ -57,11 +57,13 @@ const getLocationById = async (req, res) => {
 };
 
 const getLocation = async (req, res) => {
-  const { title, ratingFilter, sort } = req.query;
+  const { name, ratingFilter, sort } = req.query;
   let newObject = {};
 
-  if (title) {
-    newObject.title = { $regex: title, $options: "i" };
+  console.log(name)
+
+  if (name) {
+    newObject.name = { $regex: name, $options: "i" };
   }
 
   if (ratingFilter) {

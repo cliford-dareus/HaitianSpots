@@ -21,6 +21,11 @@ const postComment = async (req, res) => {
   res.status(StatusCodes.OK).json(commentCreated);
 };
 
+const LikeComment = async ( req, res ) => {
+  const { id } = req.user;
+
+}
+
 const deleteComment = async (req, res) => {};
 
 module.exports = { postComment, deleteComment };

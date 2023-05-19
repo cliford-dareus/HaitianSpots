@@ -9,8 +9,8 @@ const {
 } = require('../controller/location.controller');
 const authentication = require('../middleware/authentication');
 
+router.route('/filter').get(getLocation);
 router.route('/').get(getAllLocations).post(authentication, createLocation);
 router.route('/:id').patch(updateFavoriteLocation).get(getLocationById);
-router.route('/filter').get(getLocation);
 
 module.exports = router;
