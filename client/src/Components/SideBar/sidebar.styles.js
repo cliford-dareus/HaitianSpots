@@ -8,21 +8,26 @@ export const SideBarContainer = styled.aside`
   left: 0;
   bottom: 0;
   width: 100%;
-  /* transform: translateX(-100%); */
+  transform: translateX(-100%);
 
-  @media screen and (min-width: 690px) {
+  @media screen and (min-width: 750px) {
     position: initial;
     transform: initial;
     top: initial;
     left: initial;
     bottom: initial;
     position: relative;
-    width: var(--sidebar--width);
+    width: var(--sidebar--tablet-width);
     background-color: var(--bg--primary-800);
     display: flex;
     align-items: center;
     flex-direction: column;
     padding-top: 1em;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: var(--sidebar--width);
   }
 `;
 

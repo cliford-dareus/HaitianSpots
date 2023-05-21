@@ -18,7 +18,8 @@ export const GlobalStyles = createGlobalStyle`
         --txt--color-100: whitesmoke;
         --txt--color-200: #eee;
 
-        --sidebar--width: 20vw;
+        --sidebar--width: 20rem;
+        --sidebar--tablet-width: 5rem;
     }
 
     body{

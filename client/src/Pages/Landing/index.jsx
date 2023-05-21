@@ -41,7 +41,7 @@ const index = () => {
         <LandingSectionTextContent>
           <SectionTitle>
             Discover <br />
-            <span>Haitian</span> Restaurant
+            <span>Haitian</span> <br /> Restaurant
           </SectionTitle>
           <LandingSectionLeftBtn onClick={() => setOpenModal(!openModal)}>
             <span>
