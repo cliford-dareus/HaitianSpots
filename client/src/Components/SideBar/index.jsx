@@ -47,7 +47,7 @@ const index = () => {
   return (
     <SideBarContainer>
       <SideBarTop>
-        <SideBarLogo>
+        <SideBarLogo to='/'>
           <SideBarLogoInner>
             <SiCodechef />
           </SideBarLogoInner>
@@ -74,31 +74,6 @@ const index = () => {
               )}
             </SideBarNavigationItem>
           ))}
-
-          {/* <SideBarNavigationItem>
-            <SideBarNavigationLink to="/places">
-              <span>
-                <AiOutlineHome />
-              </span>
-              <p>Locations</p>
-            </SideBarNavigationLink>
-          </SideBarNavigationItem>
-          <SideBarNavigationItem>
-            <SideBarNavigationLink to="/favorites">
-              <span>
-                <AiOutlineHome />
-              </span>
-              <p>Favorites</p>
-            </SideBarNavigationLink>
-          </SideBarNavigationItem>
-          <SideBarNavigationItem>
-            <SideBarNavigationLink to="/g">
-              <span>
-                <AiOutlineHome />
-              </span>
-              <p>Added</p>
-            </SideBarNavigationLink>
-          </SideBarNavigationItem> */}
         </SideBarNavigation>
       </SideBarMiddle>
 

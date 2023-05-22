@@ -38,7 +38,7 @@ const index = ({ onItemSelected }) => {
   const [activeFilter, setActiveFilter] = useState(filtersData[0]);
   const { coords } = useUserLocation();
   const user = useSelector((state) => state.User);
-  const imageRef = useRef(null);
+  // const imageRef = useRef(null);
 
   const handledFavorite = async (id) => {
     if (!user) {
@@ -123,11 +123,13 @@ const index = ({ onItemSelected }) => {
 
                       <LocationContentListTextBox>
                         <LocationContentListText>
-                          <h3>{list.name}</h3>
+                          <h4>{list.name}</h4>
                           <p>{list.address}</p>
                         </LocationContentListText>
 
-                        <p>Rating</p>
+                        <p>
+                          <AiOutlineHeart /> 
+                        </p>
                       </LocationContentListTextBox>
                     </LocationContentListInner>
 

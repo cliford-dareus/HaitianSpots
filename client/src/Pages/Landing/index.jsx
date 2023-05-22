@@ -56,7 +56,7 @@ const index = () => {
           <h2>Recently Added</h2>
           <LandingSectionCardContainer>
             {!isLoading &&
-              data?.location?.slice(0, 2).map((card) => (
+              data?.location?.map((card) => (
                 <LandingSectionCard
                   key={card._id}
                   style={{ backgroundImage: `url(${card.image})` }}

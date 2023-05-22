@@ -19,7 +19,7 @@ export const GlobalStyles = createGlobalStyle`
         --txt--color-200: #eee;
 
         --sidebar--width: 20rem;
-        --sidebar--tablet-width: 5rem;
+        --sidebar--tablet-width: 6rem;
     }
 
     body{

@@ -8,6 +8,8 @@ export const SideBarContainer = styled.aside`
   left: 0;
   bottom: 0;
   width: 100%;
+  z-index: 1000;
+  background-color: var(--bg--primary-800);
   transform: translateX(-100%);
 
   @media screen and (min-width: 750px) {
@@ -56,6 +58,10 @@ export const SideBarLogoText = styled.span`
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--txt--color-100);
+
+  @media screen and (min-width: 750px) {
+    display: none;
+  }
 `;
 
 // Navigation
@@ -75,7 +81,7 @@ export const SideBarNavigation = styled.ul`
 export const SideBarNavigationItem = styled.li`
   position: relative;
   width: 100%;
-  
+
   cursor: pointer;
   isolation: isolate;
   &:hover {
@@ -100,6 +106,14 @@ export const SideBarNavigationLink = styled(Link)`
   gap: 1em;
   text-decoration: none;
 
+  @media screen and (min-width: 750px) {
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 1024px) {
+    justify-content: start;
+  }
+
   span {
     display: flex;
     justify-content: center;
@@ -110,6 +124,14 @@ export const SideBarNavigationLink = styled(Link)`
 
   p {
     font-size: 1.1rem;
+
+    @media screen and (min-width: 750px) {
+      display: none;
+    }
+
+    @media screen and (min-width: 1024px) {
+      display: block;
+    }
   }
 `;
 
@@ -129,7 +151,7 @@ export const SideBarBottom = styled.div`
   border-radius: 0.5em 0.5em 0.5em 0;
   background-color: var(--accent--color-200);
 
-  a{
+  a {
     padding-inline: 0;
   }
 `;
@@ -146,11 +168,29 @@ export const SideBarBottomBtn = styled.button`
   font-weight: bold;
   color: var(--accent--color-200);
 
+  p {
+    @media screen and (min-width: 750px) {
+      display: none;
+    }
+
+    @media screen and (min-width: 1024px) {
+      width: var(--sidebar--width);
+    }
+  }
+
   span {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     margin-right: 0.5em;
+
+    @media screen and (min-width: 750px) {
+      margin-right: 0;
+    }
+
+    @media screen and (min-width: 1024px) {
+      margin-right: 0.5em;
+    }
   }
 `;

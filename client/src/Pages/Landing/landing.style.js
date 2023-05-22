@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const LandingSection = styled.section`
   position: relative;
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
@@ -15,7 +14,7 @@ export const LandingSection = styled.section`
     gap: 1em;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1070px) {
     grid-template-columns: 40% auto;
   }
 `;
@@ -27,10 +26,11 @@ export const LandingSectionLeft = styled.div`
   width: 100%;
   overflow: hidden;
   height: 100%;
+  gap: 2em;
 `;
 
 export const LandingSectionTextContent = styled.div`
-  height: 40%;
+  /* height: 40%; */
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -43,7 +43,8 @@ export const LandingSectionContent = styled.div`
   border-radius: 0.5em;
   background-color: var(--bg--primary-400);
   overflow: hidden;
-  height: 60%;
+  /* height: 60%; */
+  flex: 1;
 `;
 
 export const LandingSectionCardContainer = styled.div`
@@ -51,10 +52,8 @@ export const LandingSectionCardContainer = styled.div`
   gap: 1em;
   margin-top: 1em;
   max-width: 100%;
+  height: 100%;
   overflow: hidden;
-
-  @media screen and (min-width: 420px) {
-  }
 
   @media screen and (min-width: 700px) {
     flex-direction: column;
@@ -63,11 +62,9 @@ export const LandingSectionCardContainer = styled.div`
 
 export const LandingSectionCard = styled.div`
   position: relative;
-  /* min-width: 240px; */
-  min-width: 200px;
-  width: 80%;
-  /* max-width: 340px; */
-  height: 155px; //155px
+  min-width: 270px;
+  width: 90%;
+  height: 155px;
   border-radius: 0.5em;
   padding: 1em;
   background-color: var(--accent--color-200);
@@ -78,9 +75,6 @@ export const LandingSectionCard = styled.div`
   display: flex;
   align-items: flex-end;
   cursor: pointer;
-
-  @media screen and (min-width: 420px) {
-  }
 
   @media screen and (min-width: 700px) {
     width: 100%;
@@ -97,8 +91,6 @@ export const LandingSectionCardIcon = styled.span`
 
 export const LandingSectionLeftBtn = styled.button`
   display: none;
-  @media screen and (min-width: 420px) {
-  }
 
   @media screen and (min-width: 700px) {
     border: none;
