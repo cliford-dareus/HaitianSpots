@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import {
+  LandingBtn,
+  LandingBtnContainer,
+  LandingHeroImageContainer,
+  LandingHeroContainer,
+  LandingHeroText,
   LandingSection,
-  LandingSectionCard,
-  LandingSectionCardContainer,
-  LandingSectionCardIcon,
-  LandingSectionContent,
-  LandingSectionLeft,
-  LandingSectionLeftBtn,
-  LandingSectionRigth,
-  LandingSectionTextContent,
-  SectionTitle,
+  LandingHeroImage,
+  LandingHeroImg,
 } from "./landing.style";
 import Map from "../../Components/Map";
 import Modal from "../../Components/LocationModal";
+import Banner from "../../Components/Banner";
+import Slider from "../../Components/Slider";
+import NearYou from "../../Components/NearYou";
 import { AiOutlineHeart, AiOutlinePlus, AiTwotoneHeart } from "react-icons/ai";
 import {
   useFavoriteLocationMutation,
@@ -20,6 +21,8 @@ import {
 } from "../../features/api/locationApi";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+
+import Image from "../../../public/image.png";
 
 const index = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -37,52 +40,32 @@ const index = () => {
 
   return (
     <LandingSection>
-      <LandingSectionLeft>
-        <LandingSectionTextContent>
-          <SectionTitle>
-            Discover <br />
-            <span>Haitian</span> <br /> Restaurant
-          </SectionTitle>
-          <LandingSectionLeftBtn onClick={() => setOpenModal(!openModal)}>
-            <span>
-              <AiOutlinePlus />
-            </span>
-            Add New Place
-          </LandingSectionLeftBtn>
-          {openModal && <Modal setOpenModal={setOpenModal} />}
-        </LandingSectionTextContent>
+      <LandingHeroContainer>
+        <LandingHeroText>
+          Discover and share the most Beautiful Haitian places in your city
+        </LandingHeroText>
 
-        <LandingSectionContent>
-          <h2>Recently Added</h2>
-          <LandingSectionCardContainer>
-            {!isLoading &&
-              data?.location?.map((card) => (
-                <LandingSectionCard
-                  key={card._id}
-                  style={{ backgroundImage: `url(${card.image})` }}
-                >
-                  <div>
-                    <h3>{card.name}</h3>
-                    <p>
-                      <span>star</span> 3.5
-                    </p>
-                  </div>
-                  <LandingSectionCardIcon
-                    onClick={() => {
-                      handledFavorite(card._id);
-                    }}
-                  >
-                    {!card.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
-                  </LandingSectionCardIcon>
-                </LandingSectionCard>
-              ))}
-          </LandingSectionCardContainer>
-        </LandingSectionContent>
-      </LandingSectionLeft>
+        <LandingBtnContainer>
+          <LandingBtn>Browse Places</LandingBtn>
+          <LandingBtn>Add Place</LandingBtn>
+        </LandingBtnContainer>
 
-      <LandingSectionRigth>
-        <Map />
-      </LandingSectionRigth>
+        <LandingHeroImageContainer>
+          <LandingHeroImage>
+            <LandingHeroImg src={Image} />
+          </LandingHeroImage>
+          <LandingHeroImage>
+            <LandingHeroImg src={Image} />
+          </LandingHeroImage>
+          <LandingHeroImage>
+            <LandingHeroImg src={Image} />
+          </LandingHeroImage>
+        </LandingHeroImageContainer>
+      </LandingHeroContainer>
+
+      <Banner />
+      <Slider />
+      <NearYou />
     </LandingSection>
   );
 };

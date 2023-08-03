@@ -33,6 +33,8 @@ const index = () => {
     e.preventDefault();
     const { name, password } = userInfo;
 
+    console.log(userInfo)
+
     if (!name || !password) {
       toast("name and password is required!");
       return;

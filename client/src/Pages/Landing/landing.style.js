@@ -1,147 +1,88 @@
 import styled from "styled-components";
 
 export const LandingSection = styled.section`
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 1em;
-
-  @media screen and (min-width: 700px) {
-    grid-template-columns: 50% auto;
-    height: calc(100% - 50px);
-    grid-template-rows: auto;
-    gap: 1em;
-  }
-
-  @media screen and (min-width: 1070px) {
-    grid-template-columns: 40% auto;
-  }
-`;
-
-export const LandingSectionLeft = styled.div`
-  padding-top: 3em;
-  display: flex;
-  flex-direction: column;
+  padding-inline: 24px;
+  /* height: 200vh; */
   width: 100%;
-  overflow: hidden;
-  height: 100%;
-  gap: 2em;
 `;
 
-export const LandingSectionTextContent = styled.div`
-  /* height: 40%; */
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-`;
-
-export const LandingSectionContent = styled.div`
-  width: 100%;
+export const LandingHeroContainer = styled.div`
+  max-width: 70%;
+  height: 50vh;
+  margin-inline: auto;
   padding: 1em;
-  margin-top: 1em;
-  border-radius: 0.5em;
-  background-color: var(--bg--primary-400);
-  overflow: hidden;
-  /* height: 60%; */
-  flex: 1;
-`;
-
-export const LandingSectionCardContainer = styled.div`
-  display: flex;
-  gap: 1em;
-  margin-top: 1em;
-  max-width: 100%;
-  height: 100%;
-  overflow: hidden;
-
-  @media screen and (min-width: 700px) {
-    flex-direction: column;
-  }
-`;
-
-export const LandingSectionCard = styled.div`
   position: relative;
-  min-width: 270px;
-  width: 90%;
-  height: 155px;
-  border-radius: 0.5em;
-  padding: 1em;
-  background-color: var(--accent--color-200);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-blend-mode: multiply;
   display: flex;
-  align-items: flex-end;
-  cursor: pointer;
-
-  @media screen and (min-width: 700px) {
-    width: 100%;
-    padding-top: 3em;
-  }
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3em;
+  text-align: center;
 `;
 
-export const LandingSectionCardIcon = styled.span`
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-  font-size: 1.5em;
-`;
-
-export const LandingSectionLeftBtn = styled.button`
-  display: none;
-
-  @media screen and (min-width: 700px) {
-    border: none;
-    outline: none;
-    padding: 0.8em;
-    border-radius: 0.5em;
-    background-color: var(--accent--color-200);
-    color: var(--txt--color-100);
-    font-weight: 800;
-    font-size: 1rem;
-    margin-top: 1em;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1em;
-
-    span {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.5rem;
-    }
-  }
-`;
-
-export const SectionTitle = styled.h1`
+export const LandingHeroText = styled.h1`
   font-size: 3rem;
   line-height: 1;
+  text-align: center;
+  max-width: 20ch;
+`;
 
-  span {
-    color: var(--accent--color-200);
+export const LandingHeroImageContainer = styled.div`
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  inset: 0;
+  z-index: -2;
+`;
+
+export const LandingHeroImage = styled.div`
+  width: 100%;
+  overflow: hidden;
+  background-color: black;
+  /* border: 1px solid wheat; */
+  border-radius: 5px;
+  position: relative;
+
+  :nth-of-type(1),
+  :nth-of-type(3) {
+    margin-top: 1em;
   }
 
-  @media screen and (min-width: 375px) {
-    font-size: 3.5rem;
+  :nth-of-type(2){
+    margin-bottom: 1em;
   }
 `;
 
-export const LandingSectionRigth = styled.div`
-  height: 100%;
+export const LandingHeroImg = styled.img`
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
   width: 100%;
-  border-radius: 0.5em;
+  height: 100%;
+  opacity: .6;
+`;
 
-  @media screen and (min-width: 700px) {
-    padding-top: 3em;
-  }
+export const LandingBtnContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 1em;
+`;
+
+export const LandingBtn = styled.button`
+  all: unset;
+  padding: 0.5em 1em;
+  background-color: blue;
 `;
 
 export const MapContainer = styled.div`
+  width: 100%;
   height: 100%;
-  border-radius: 0.5em;
-  overflow: hidden;
 `;
+export const LandingSectionCard = styled.div``;
+export const LandingSectionCardContainer = styled.div``;
+export const SectionTitle = styled.div``;
+export const LandingSectionLeft = styled.div``;
+export const LandingSectionRigth = styled.div``;

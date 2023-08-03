@@ -5,13 +5,13 @@ export const LayoutContainer = styled.div`
   height: 100vh;
   display: flex;
   overflow: hidden;
-  position: relative;
+  /* position: relative; */
 `;
 
 export const MainContent = styled.main`
   width: 100%;
   height: 100%;
-  padding: 1em;
+  padding: 0 1em;
   position: relative;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -22,5 +22,8 @@ export const MainContent = styled.main`
   }
   @media screen and (min-width: 700px) {
     overflow: hidden;
+  }
+  @media screen and (min-width: 1450px) {
+    padding: 0 10vw;
   }
 `;

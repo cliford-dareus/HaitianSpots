@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   width: 100%;
-  height: 50px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-inline: 24px;
 `;
 
 export const HeaderSearch = styled.div`
