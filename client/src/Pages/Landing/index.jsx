@@ -9,10 +9,10 @@ import {
   LandingHeroImage,
   LandingHeroImg,
 } from "./landing.style";
-import Map from "../../Components/Map";
-import Modal from "../../Components/LocationModal";
-import Banner from "../../Components/Banner";
-import Slider from "../../Components/Slider";
+// import Map from "../../Components/Map";
+// import Modal from "../../Components/LocationModal";
+import Banner from "../../Components/UI/Banner";
+import Slider from "../../Components/UI/Slider";
 import NearYou from "../../Components/NearYou";
 import { AiOutlineHeart, AiOutlinePlus, AiTwotoneHeart } from "react-icons/ai";
 import {

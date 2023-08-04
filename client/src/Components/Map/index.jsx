@@ -8,8 +8,8 @@ import {
   startingLayer,
 } from "../../Utils/commons/mapGeoData";
 
-import UserPin from "../UserPin";
-import LocationPin from "../LocationPin";
+import UserPin from "../UI/UserPin";
+import LocationPin from "../UI/LocationPin";
 import { MapContainer } from "../../Pages/Landing/landing.style";
 import useUserLocation from "../../Utils/hooks/useUserLocation";
 import { useGetLocationsQuery } from "../../features/api/locationApi";

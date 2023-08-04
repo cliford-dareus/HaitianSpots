@@ -20,9 +20,9 @@ import {
   AiOutlineSetting,
 } from "react-icons/ai";
 import { sideBarData } from "./SideBarData";
-import ActiveLinkIndicator from "../../Components/TabAnimation";
-import { useLogoutUserMutation } from "../../features/api/authApi";
-import { removeUserInfo } from "../../features/slices/userSlice";
+import ActiveLinkIndicator from "../TabAnimation";
+import { useLogoutUserMutation } from "../../../features/api/authApi";
+import { removeUserInfo } from "../../../features/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 

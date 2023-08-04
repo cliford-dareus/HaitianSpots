@@ -19,7 +19,7 @@ import {
 } from "./places.styles";
 import { IoFilter } from "react-icons/io5";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
-import ActiveLinkIndicator from "../../Components/TabAnimation";
+import ActiveLinkIndicator from "../../Components/UI/TabAnimation";
 import {
   useFavoriteLocationMutation,
   useGetLocationsQuery,

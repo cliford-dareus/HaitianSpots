@@ -21,7 +21,7 @@ import {
   useFavoriteLocationMutation,
   useGetLocationsQuery,
 } from "../../features/api/locationApi";
-import ActiveLinkIndicator from "../../Components/TabAnimation";
+import ActiveLinkIndicator from "../../Components/UI/TabAnimation";
 import { AnimatePresence } from "framer-motion";
 
 const filter = [0, 1, 2, 3, 4, 5];

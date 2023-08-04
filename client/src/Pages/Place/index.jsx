@@ -11,8 +11,8 @@ import {
   PlaceUserContainer,
 } from "./place.styles";
 import { useGetLocationByIdQuery } from "../../features/api/locationApi";
-import InputField from "../../Components/InputField";
-import TransitionLayer from "../../Components/TransitionLayer";
+import InputField from "../../Components/UI/InputField";
+import TransitionLayer from "../../Components/UI/TransitionLayer";
 import CommentBox from "../../Components/Comment";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import { useEffect, useRef, useState } from "react";

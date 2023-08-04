@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { LandingHighlightContainer, LandingHighlightSlide, LandingHighlightSliderContainer } from "./Slider.style";
 
-import { sliderConfig } from "../../Utils/styles/sliderConfig";
+import { sliderConfig } from "../../../Utils/styles/sliderConfig";
 
 const index = () => {
   return (

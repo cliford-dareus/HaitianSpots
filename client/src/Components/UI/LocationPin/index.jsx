@@ -1,7 +1,7 @@
 import React from "react";
 import Map, { Marker, Popup, Layer, Source } from "react-map-gl";
-import Pin from "../../assets/locationPin.svg";
-import PopupContent from "../../Components/MapPopup";
+import Pin from "../../../assets/locationPin.svg";
+import PopupContent from "../MapPopup";
 
 const index = ({ data, showPopup, handlePopup, setShowPopup, setRoute }) => {
   return (

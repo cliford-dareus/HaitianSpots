@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import InputField from "../../Components/InputField";
+import InputField from "../../Components/UI/InputField";
 import {
   AuthButton,
   AuthForm,

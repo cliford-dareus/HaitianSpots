@@ -1,5 +1,5 @@
 import React from 'react';
-import Pin from "../../assets/locationPin.svg";
+import Pin from "../../../assets/locationPin.svg";
 import Map, { Marker, Popup, Layer, Source } from "react-map-gl";
 
 const index = ({ coords}) => {

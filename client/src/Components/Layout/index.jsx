@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { LayoutContainer, MainContent } from "./layout.styles";
-import SideBar from "../SideBar";
-import Header from "../Header";
+import SideBar from "../UI/SideBar";
+import Header from "../UI/Header";
 
 const index = () => {
   return (

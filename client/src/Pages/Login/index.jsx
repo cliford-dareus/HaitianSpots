@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import InputField from "../../Components/InputField";
+import InputField from "../../Components/UI/InputField";
 import { useNavigate } from "react-router-dom";
 import {
   AuthButton,

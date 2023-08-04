@@ -8,11 +8,11 @@ import {
   HeaderSearch,
   HeaderSearchInput,
 } from "./header.styles";
-import DefaultPic from "../../assets/profile.jpg";
+import DefaultPic from "../../../assets/profile.jpg";
 import { BsSearch } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { useGetLocationQuery } from "../../features/api/locationApi";
+import { useGetLocationQuery } from "../../../features/api/locationApi";
 
 const index = () => {
   const [word, setWord] = useState('');
