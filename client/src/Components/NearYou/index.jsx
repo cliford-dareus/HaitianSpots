@@ -8,27 +8,28 @@ import {
   LandingNearYouPopularContainer,
 } from "./NearYou.style";
 import Map from "../../Components/Map";
+import { LandingHeroImg } from "../../Pages/Landing/landing.style";
 
-const index = () => {
+const index = ({ data }) => {
   return (
     <LandingNearYouContainer>
       <h2>Places Near you</h2>
 
       <LandingNearYouInner>
         <LandingNearYouMapContainer>
-          <Map />
+          <Map data={data} />
 
           <LandingNearYouPopularContainer>
-            <LandingNearYouPopular></LandingNearYouPopular>
-            <LandingNearYouPopular></LandingNearYouPopular>
-            <LandingNearYouPopular></LandingNearYouPopular>
-            <LandingNearYouPopular></LandingNearYouPopular>
+            {/* Todo: add a popular flag in api */}
+            {data?.location.slice(0, 4).map((location) => (
+              <LandingNearYouPopular>
+                <LandingHeroImg src={location.image} />
+              </LandingNearYouPopular>
+            ))}
           </LandingNearYouPopularContainer>
         </LandingNearYouMapContainer>
 
-        <LandingNearYouCard>
-            
-        </LandingNearYouCard>
+        <LandingNearYouCard></LandingNearYouCard>
       </LandingNearYouInner>
     </LandingNearYouContainer>
   );

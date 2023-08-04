@@ -24,6 +24,6 @@ export const MainContent = styled.main`
     overflow: hidden;
   }
   @media screen and (min-width: 1450px) {
-    padding: 0 10vw;
+    padding: 0 8vw;
   }
 `;

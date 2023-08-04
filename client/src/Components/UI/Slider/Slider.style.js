@@ -17,6 +17,18 @@ export const LandingHighlightSliderContainer = styled.div`
 
 export const LandingHighlightSlide = styled.div`
   height: 13em;
-  background-color: royalblue;
   color: whitesmoke;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+
+  & img {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.6;
+  }
 `;

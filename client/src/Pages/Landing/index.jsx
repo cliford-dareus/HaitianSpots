@@ -26,17 +26,8 @@ import Image from "../../../public/image.png";
 
 const index = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [updateFavorite] = useFavoriteLocationMutation();
   const { data, isLoading } = useGetLocationsQuery();
   const user = useSelector((state) => state.User);
-
-  const handledFavorite = async (id) => {
-    if (!user) {
-      toast("User not Login", { type: "error" });
-      return;
-    }
-    await updateFavorite(id);
-  };
 
   return (
     <LandingSection>
@@ -51,21 +42,17 @@ const index = () => {
         </LandingBtnContainer>
 
         <LandingHeroImageContainer>
-          <LandingHeroImage>
-            <LandingHeroImg src={Image} />
-          </LandingHeroImage>
-          <LandingHeroImage>
-            <LandingHeroImg src={Image} />
-          </LandingHeroImage>
-          <LandingHeroImage>
-            <LandingHeroImg src={Image} />
-          </LandingHeroImage>
+          {data?.location.slice(0, 3).map((location) => (
+            <LandingHeroImage>
+              <LandingHeroImg src={location.image} />
+            </LandingHeroImage>
+          ))}
         </LandingHeroImageContainer>
       </LandingHeroContainer>
 
-      <Banner />
-      <Slider />
-      <NearYou />
+      {/* <Banner /> */}
+      <Slider data={data} />
+      <NearYou data={data} />
     </LandingSection>
   );
 };

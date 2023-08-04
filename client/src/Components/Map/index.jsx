@@ -12,13 +12,10 @@ import UserPin from "../UI/UserPin";
 import LocationPin from "../UI/LocationPin";
 import { MapContainer } from "../../Pages/Landing/landing.style";
 import useUserLocation from "../../Utils/hooks/useUserLocation";
-import { useGetLocationsQuery } from "../../features/api/locationApi";
-import { useSelector } from "react-redux";
 
-const index = ({ isOpen }) => {
+const index = ({ isOpen, data }) => {
   const { coords, isLoading } = useUserLocation();
   const [isMapReady, setIsMapReady] = useState(false);
-  const { data, isSuccess } = useGetLocationsQuery();
 
   const [locations, setLocations] = useState([]);
   const [showPopup, setShowPopup] = useState({});

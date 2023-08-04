@@ -5,6 +5,7 @@ export const LocationSection = styled.section`
   width: 100%;
   height: calc(100% - 50px);
   padding-top: 3em;
+  padding-inline: 24px;
   overflow: hidden;
 `;
 

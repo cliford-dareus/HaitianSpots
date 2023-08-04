@@ -8,6 +8,7 @@ export const FavoritesContainer = styled.section`
   display: grid;
   grid-template-columns: 60% auto;
   gap: 2em;
+  padding-inline: 24px;
 `;
 
 export const FavoriteContentBox = styled.div`

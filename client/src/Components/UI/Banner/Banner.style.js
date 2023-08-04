@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const BannerParallax = styled.div`
-  overflow: hidden;
+  /* overflow: hidden; */
   letter-spacing: -2px;
   line-height: 0.8;
   margin: 0;
