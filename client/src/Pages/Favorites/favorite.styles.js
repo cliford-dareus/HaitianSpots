@@ -4,11 +4,15 @@ import styled from "styled-components";
 export const FavoritesContainer = styled.section`
   position: relative;
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 100px);
   display: grid;
   grid-template-columns: 60% auto;
   gap: 2em;
   padding-inline: 24px;
+`;
+
+export const FavoriteSectionRigth = styled.div`
+  padding: 4.5em 0;
 `;
 
 export const FavoriteContentBox = styled.div`
@@ -57,29 +61,4 @@ export const FavoriteListAction = styled.div`
   font-size: 1.5rem;
   border-radius: .5em;
   background-color: var(--accent--color-200);
-`;
-
-export const FavoriteCard = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 0.5em;
-  overflow: hidden;
-  background-color: var(--bg--primary-800);
-`;
-
-export const FavoriteCardImage = styled.div`
-  position: relative;
-  height: 50%;
-
-  img{
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
-export const FavoriteCardContent = styled.div`
-    padding: 1em;
 `;

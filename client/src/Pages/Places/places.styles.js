@@ -14,35 +14,6 @@ export const LocationSectionContentBox = styled.div`
   padding-top: 1em;
 `;
 
-export const LocationSectionFilter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-  }
-`;
-
-export const FiltersBox = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1em;
-`;
-
-export const Filters = styled(motion.div)`
-  position: relative;
-  padding: 0.3em 1.5em;
-  border-radius: 0.5em;
-  font-size: 0.8rem;
-  cursor: pointer;
-  isolation: isolate;
-  background-color: var(--bg--primary-800);
-`;
-
 export const LocationSectionContent = styled.div`
   height: 100%;
   display: flex;
@@ -90,7 +61,7 @@ export const LocationContentListBox = styled.div`
   border-radius: 0.5em;
   background-color: var(--bg--primary-800);
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1em;
   overflow-y: scroll;
 
@@ -101,6 +72,8 @@ export const LocationContentListBox = styled.div`
 
 export const LocationContentList = styled(motion.div)`
   position: relative;
+  height: 200px;
+  width: 30%;
   min-height: 100px; //300px
   border-radius: 0.5em;
   background-color: var(--bg--primary-500);

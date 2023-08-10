@@ -16,8 +16,9 @@ export const LandingNearYouInner = styled.div`
 export const LandingNearYouMapContainer = styled.div`
   background-color: grey;
   height: 50vh;
-  width: 70%;
+  min-width: 70%;
   border-radius: 5px;
+  position: relative;
 `;
 
 export const LandingNearYouPopularContainer = styled.div`
@@ -33,9 +34,10 @@ export const LandingNearYouPopular = styled.div`
   border-radius: 5px;
 `;
 
-export const LandingNearYouCard = styled.div`
-  flex: 1;
-  height: 100%;
-  background-color: red;
-  border-radius: 5px;
+export const LandingNearYouActions = styled.div`
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  z-index: 222222;
+  color: white;
 `;

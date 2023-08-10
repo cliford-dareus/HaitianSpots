@@ -1,36 +1,28 @@
 import React, { useEffect, useState } from "react";
 import {
-  FavoriteCard,
-  FavoriteCardContent,
-  FavoriteCardImage,
   FavoriteContentBox,
   FavoriteList,
   FavoriteListAction,
   FavoriteListContainer,
   FavoriteListContainerActions,
+  FavoriteSectionRigth,
   FavoritesContainer,
 } from "./favorite.styles";
-import {
-  LandingSectionLeft,
-  LandingSectionRigth,
-  SectionTitle,
-} from "../Landing/landing.style";
+import { LandingSectionLeft, SectionTitle } from "../Landing/landing.style";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
-import { Filters, FiltersBox } from "../Places/places.styles";
 import {
   useFavoriteLocationMutation,
   useGetLocationsQuery,
 } from "../../features/api/locationApi";
-import ActiveLinkIndicator from "../../Components/UI/TabAnimation";
+import PlaceCard from "../../Components/PlaceCard";
+import PlaceFilter from "../../Components/PlacesFilter";
 import { AnimatePresence } from "framer-motion";
-
-const filter = [0, 1, 2, 3, 4, 5];
 
 const index = () => {
   const [updateFavorite] = useFavoriteLocationMutation();
-  const { data, isLoading, isSuccess } = useGetLocationsQuery();
-  const [tabSelected, setTabSelected] = useState(filter[0]);
+  const { data, isLoading } = useGetLocationsQuery();
   const [favoriteList, setFavoriteList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
   const [selectedList, setSelectedList] = useState([]);
 
   useEffect(() => {
@@ -42,6 +34,7 @@ const index = () => {
 
   useEffect(() => {
     if (!favoriteList) return;
+    setFilteredList(favoriteList);
     setSelectedList(favoriteList[0]);
   }, [favoriteList]);
 
@@ -53,21 +46,15 @@ const index = () => {
         </SectionTitle>
 
         <FavoriteContentBox>
-          <FiltersBox onClick={() => {}}>
-            {filter.map((x, index) => (
-              <Filters key={x}>
-                {x}
-                {tabSelected == index && (
-                  <ActiveLinkIndicator layoutId="bubble2" rounded="false" />
-                )}
-              </Filters>
-            ))}
-          </FiltersBox>
+          <PlaceFilter
+            setFilterData={setFilteredList}
+            data={{ location: favoriteList }}
+          />
 
           <AnimatePresence>
             <FavoriteListContainer>
               {!isLoading ? (
-                favoriteList?.map((x) => (
+                filteredList?.map((x) => (
                   <FavoriteList
                     key={x}
                     onClick={() => setSelectedList(x)}
@@ -97,19 +84,9 @@ const index = () => {
         </FavoriteContentBox>
       </LandingSectionLeft>
 
-      <LandingSectionRigth>
-        {!isLoading && (
-          <FavoriteCard>
-            <FavoriteCardImage>
-              <img src={`${selectedList?.image}`} alt="" />
-            </FavoriteCardImage>
-            <FavoriteCardContent>
-              <span>{selectedList?.address?.split(",")[0]}</span>
-              <h3>{selectedList?.name}</h3>
-            </FavoriteCardContent>
-          </FavoriteCard>
-        )}
-      </LandingSectionRigth>
+      <FavoriteSectionRigth>
+        {!isLoading && <PlaceCard selectedList={selectedList} />}
+      </FavoriteSectionRigth>
     </FavoritesContainer>
   );
 };

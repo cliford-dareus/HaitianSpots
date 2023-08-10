@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { SectionTitle } from "../Landing/landing.style";
 import {
   ContentFilter,
-  Filters,
-  FiltersBox,
   LocationContentList,
   LocationContentListBox,
   LocationContentListBtn,
@@ -15,28 +13,23 @@ import {
   LocationSectionContent,
   LocationSectionContentBox,
   LocationSectionContentFilter,
-  LocationSectionFilter,
 } from "./places.styles";
-import { IoFilter } from "react-icons/io5";
+
+import PlaceFilter from "../../Components/PlacesFilter";
+
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
-import ActiveLinkIndicator from "../../Components/UI/TabAnimation";
 import {
   useFavoriteLocationMutation,
   useGetLocationsQuery,
 } from "../../features/api/locationApi";
-import useUserLocation from "../../Utils/hooks/useUserLocation";
-import { getDistance } from "../../Utils/functions/getDistance";
 import { FavoriteListAction } from "../Favorites/favorite.styles";
 import { useSelector } from "react-redux";
-
-const filtersData = ["all", 1, 5, 10, 20, 30];
 
 const index = ({ onItemSelected }) => {
   const { data, isLoading, isFetching } = useGetLocationsQuery();
   const [updateFavorite] = useFavoriteLocationMutation();
   const [filterData, setFilterData] = useState([]);
-  const [activeFilter, setActiveFilter] = useState(filtersData[0]);
-  const { coords } = useUserLocation();
+
   const user = useSelector((state) => state.User);
   // const imageRef = useRef(null);
 
@@ -46,14 +39,6 @@ const index = ({ onItemSelected }) => {
       return;
     }
     await updateFavorite(id);
-  };
-
-  const filterByDistance = (filter) => {
-    if (!coords.latitude) {
-      return;
-    }
-    const d = getDistance(coords, data, filter);
-    setFilterData(d);
   };
 
   useEffect(() => {
@@ -68,30 +53,7 @@ const index = ({ onItemSelected }) => {
       </SectionTitle>
 
       <LocationSectionContentBox>
-        <LocationSectionFilter>
-          <FiltersBox>
-            {filtersData.map((filter) => (
-              <Filters
-                whileHover={{ backgroundColor: "var(--accent--color-200)" }}
-                whileTap={{ scale: 0.9 }}
-                key={filter}
-                onClick={() => {
-                  filterByDistance(filter);
-                  setActiveFilter(filter);
-                }}
-              >
-                {activeFilter === filter && (
-                  <ActiveLinkIndicator layoutId="bubble2" rounded="false" />
-                )}
-                {filter} {filter == "all" ? "" : "mile"}
-              </Filters>
-            ))}
-          </FiltersBox>
-
-          <span>
-            <IoFilter />
-          </span>
-        </LocationSectionFilter>
+        <PlaceFilter setFilterData={setFilterData} data={data} />
 
         <LocationSectionContent>
           <LocationSectionContentFilter>
@@ -128,7 +90,7 @@ const index = ({ onItemSelected }) => {
                         </LocationContentListText>
 
                         <p>
-                          <AiOutlineHeart /> 
+                          <AiOutlineHeart />
                         </p>
                       </LocationContentListTextBox>
                     </LocationContentListInner>

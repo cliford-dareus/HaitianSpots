@@ -13,7 +13,7 @@ import LocationPin from "../UI/LocationPin";
 import { MapContainer } from "../../Pages/Landing/landing.style";
 import useUserLocation from "../../Utils/hooks/useUserLocation";
 
-const index = ({ isOpen, data }) => {
+const index = ({ isOpen, data, setSelectedPlace }) => {
   const { coords, isLoading } = useUserLocation();
   const [isMapReady, setIsMapReady] = useState(false);
 
@@ -32,6 +32,7 @@ const index = ({ isOpen, data }) => {
   });
 
   const handlePopup = (location) => {
+    setSelectedPlace(location)
     setShowPopup({ [location._id]: true });
     // await getDirections(coords, coords);
     //     setStartLayer({
