@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
@@ -97,7 +97,7 @@ export const ActiveLinkIndicator = styled(motion.span)`
   border-radius: ${(props) => (props.rounded ? "0" : "0.5em")};
 `;
 
-export const SideBarNavigationLink = styled(Link)`
+export const SideBarNavigationLink = styled(NavLink)`
   height: 100%;
   color: var(--txt--color-100);
   display: flex;
@@ -105,6 +105,8 @@ export const SideBarNavigationLink = styled(Link)`
   padding: 0.8em 1.5em;
   gap: 1em;
   text-decoration: none;
+  position: relative;
+  isolation: isolate;
 
   @media screen and (min-width: 750px) {
     justify-content: center;

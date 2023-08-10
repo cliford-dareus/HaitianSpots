@@ -4,6 +4,8 @@ export const LandingSection = styled.section`
   padding-inline: 24px;
   /* height: 200vh; */
   width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
 `;
 
 export const LandingHeroContainer = styled.div`

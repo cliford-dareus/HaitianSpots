@@ -15,6 +15,7 @@ export const MainContent = styled.main`
   position: relative;
   overflow-x: hidden;
   overflow-y: scroll;
+  padding: 0 24px;
 
   @media screen and (min-width: 420px) {
     // paggind inline 1.5em for bigger size
@@ -24,6 +25,6 @@ export const MainContent = styled.main`
     overflow: hidden;
   }
   @media screen and (min-width: 1450px) {
-    padding: 0 8vw;
+    /* padding: 0 8vw; */
   }
 `;

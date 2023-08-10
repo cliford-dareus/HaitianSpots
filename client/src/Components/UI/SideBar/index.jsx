@@ -47,7 +47,7 @@ const index = () => {
   return (
     <SideBarContainer>
       <SideBarTop>
-        <SideBarLogo to='/'>
+        <SideBarLogo to="/">
           <SideBarLogoInner>
             <SiCodechef />
           </SideBarLogoInner>
@@ -62,7 +62,7 @@ const index = () => {
               key={item.id}
               onClick={() => setActiveTab(item.id)}
             >
-              <SideBarNavigationLink to={item.to}>
+              <SideBarNavigationLink to={item.to} >
                 <span>
                   {item.icon}
                   {/* <AiOutlineHome /> */}
@@ -70,7 +70,7 @@ const index = () => {
                 <p>{item.name}</p>
               </SideBarNavigationLink>
               {activeTab === item.id && (
-                <ActiveLinkIndicator layoutId="bubble" rounded='true'/>
+                <ActiveLinkIndicator layoutId="bubble" rounded="true" />
               )}
             </SideBarNavigationItem>
           ))}
