@@ -1,12 +1,13 @@
 import React from "react";
-import Map, { Marker, Popup, Layer, Source } from "react-map-gl";
+import { Marker, Popup } from "react-map-gl";
 import Pin from "../../../assets/locationPin.svg";
 import PopupContent from "../MapPopup";
 
 const index = ({ data, showPopup, handlePopup, setShowPopup, setRoute }) => {
+ 
   return (
     <>
-      {data?.location?.map((location) => (
+      {data.location?.map((location) => (
         <React.Fragment key={location._id}>
           <Marker
             latitude={location.latitude}
@@ -19,7 +20,7 @@ const index = ({ data, showPopup, handlePopup, setShowPopup, setRoute }) => {
               alt=""
               style={{ width: `${30}px`, height: `${30}px` }}
             />
-            <p>{location.title}</p>
+            <p>{location.name}</p>
           </Marker>
 
           {showPopup[location._id] && (

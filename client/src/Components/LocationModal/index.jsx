@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LocationModal } from "./locationModal.styles";
-import InputField from "../InputField";
+import InputField from "../UI/InputField";
 import { useAddLocationMutation } from "../../features/api/locationApi";
 import { toast } from "react-toastify";
 import { getGeocoding } from "../../Utils/functions/getGeocoding";
@@ -8,7 +8,8 @@ import {
   InputFieldContainer,
   LabelField,
   SelectField,
-} from "../InputField/inputField.styles";
+} from "../UI/InputField/inputField.styles";
+import { specialities } from "../../Utils/commons/constants";
 
 const index = ({ setOpenModal }) => {
   const user = true;
@@ -77,13 +78,9 @@ const index = ({ setOpenModal }) => {
             id=""
             onChange={handleInputs}
           >
-            <option value="BreakFast, Brunch, Lunch, Diner">All</option>
-            <option value="BreakFast, Brunch">BreakFast & Brunch</option>
-            <option value="Lunch, Diner">Lunch & Diner</option>
-            <option value="Brunch">Only Brunch</option>
-            <option value="BreakFast">Only BreakFast</option>
-            <option value="Lunch">Only Lunch</option>
-            <option value="Diner">Only Diner</option>
+            {specialities.map((speciality) => {
+              return <option value={speciality}>{speciality}</option>;
+            })}
           </SelectField>
         </InputFieldContainer>
 

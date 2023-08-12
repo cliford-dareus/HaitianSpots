@@ -77,11 +77,13 @@ export const LandingBtn = styled.button`
   all: unset;
   padding: 0.5em 1em;
   background-color: blue;
+  cursor: pointer;
 `;
 
 export const MapContainer = styled.div`
   width: 100%;
   height: 100%;
+  border-radius: 0.5em;
 `;
 export const LandingSectionCard = styled.div``;
 export const LandingSectionCardContainer = styled.div``;

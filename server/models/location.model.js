@@ -51,10 +51,12 @@ const locationSchema = new mongoose.Schema(
       min: -180,
       max: 180,
     },
-    favorite: {
-      type: "Boolean",
-      default: false,
-    },
+    favorite: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     creator: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

@@ -17,6 +17,8 @@ const index = ({ isOpen, data, setSelectedPlace }) => {
   const { coords, isLoading } = useUserLocation();
   const [isMapReady, setIsMapReady] = useState(false);
 
+  console.log(coords)
+
   const [locations, setLocations] = useState([]);
   const [showPopup, setShowPopup] = useState({});
   const [geojson, setGeoJson] = useState({});
@@ -30,6 +32,7 @@ const index = ({ isOpen, data, setSelectedPlace }) => {
     latitude: null,
     zoom: 13,
   });
+
 
   const handlePopup = (location) => {
     setSelectedPlace(location)
@@ -88,7 +91,6 @@ const index = ({ isOpen, data, setSelectedPlace }) => {
   //   }));
   // }, [geojson]);
 
-  // console.log(data);
 
   return (
     <MapContainer>
@@ -100,14 +102,14 @@ const index = ({ isOpen, data, setSelectedPlace }) => {
         onMove={(evt) => setViewport(evt.viewport)}
       >
         {/* User Marker */}
-        <UserPin coords={coords} />
+        {isMapReady && <UserPin coords={coords} />}
         {/* Location Marker */}
         <LocationPin
           data={data}
           showPopup={showPopup}
           handlePopup={handlePopup}
           setShowPopup={setShowPopup}
-          setRoute={setRoute}
+          // setRoute={setRoute}
         />
         {/* The Route Layer */}
         {/* <Source id="my-data" type="geojson" data={geojson}>

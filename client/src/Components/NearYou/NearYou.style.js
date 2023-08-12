@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LandingNearYouContainer = styled.div`
   margin-top: 3em;
-  height: 90vh;
+  height: 80vh;
 `;
 
 export const LandingNearYouInner = styled.div`

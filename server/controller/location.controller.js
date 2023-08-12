@@ -17,10 +17,10 @@ const createLocation = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ location });
 };
 
-const updateLocation = async (req, res) => {
-  const { id } = req.params;
-  const location = await Location.findByIdAndUpdate();
-};
+// const updateLocation = async (req, res) => {
+//   const { id } = req.params;
+//   const location = await Location.findByIdAndUpdate();
+// };
 
 const updateFavoriteLocation = async (req, res) => {
   const { id } = req.params;
@@ -30,14 +30,38 @@ const updateFavoriteLocation = async (req, res) => {
   });
 
   if (!location) {
-    throw new Error("Location Does not exist");
+    throw new Error("Place Does not exist");
   }
 
-  await location.update({
-    favorite: !location.favorite,
-  });
+    try {
+      const location = await Location.findById(id);
 
-  res.status(200).json(location);
+      if (!location) {
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .json({ message: "No place with this id" });
+      }
+
+      if (location.favorite.includes(id)) {
+        await location.updateOne({ $pull: { favorite: id } });
+
+        res.status(StatusCodes.OK).json({
+          status: StatusCodes.OK,
+          message: "Place unliked",
+        });
+      } else {
+        await location.updateOne({ $push: { favorite: id } });
+        res.status(StatusCodes.OK).json({
+          status: StatusCodes.OK,
+          message: "Place liked",
+        });
+      }
+    } catch (error) {
+      res.status(StatusCodes.BAD_REQUEST).json({
+        status: StatusCodes.BAD_REQUEST,
+        message:"Bad request" ,
+      });
+    }
 };
 
 const getLocationById = async (req, res) => {
@@ -47,7 +71,7 @@ const getLocationById = async (req, res) => {
     const location = await Location.findById(id)
       .populate({
         path: "comments",
-        populate: { path: "user", select: "userName"},
+        populate: { path: "user", select: "userName" },
       })
       .populate({ path: "creator", select: ["userName", "email"] });
     res.status(200).json(location);

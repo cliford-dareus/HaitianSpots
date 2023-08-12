@@ -29,6 +29,7 @@ const getComment = async (req, res) => {
     path: "user",
     select: "userName",
   });
+  
   if (!comment) {
     return res.status(StatusCodes.NO_CONTENT);
   }

@@ -9,25 +9,20 @@ import {
   LandingHeroImage,
   LandingHeroImg,
 } from "./landing.style";
-// import Map from "../../Components/Map";
-// import Modal from "../../Components/LocationModal";
+import Modal from "../../Components/LocationModal";
 // import Banner from "../../Components/UI/Banner";
 import Slider from "../../Components/UI/Slider";
 import Footer from "../../Components/UI/Footer";
 import NearYou from "../../Components/NearYou";
-import { AiOutlineHeart, AiOutlinePlus, AiTwotoneHeart } from "react-icons/ai";
-import {
-  useFavoriteLocationMutation,
-  useGetLocationsQuery,
-} from "../../features/api/locationApi";
+import { useGetLocationsQuery } from "../../features/api/locationApi";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 
 import Image from "../../../public/image.png";
 
 const index = () => {
+  const { data } = useGetLocationsQuery();
   const [openModal, setOpenModal] = useState(false);
-  const { data, isLoading } = useGetLocationsQuery();
   const user = useSelector((state) => state.User);
 
   return (
@@ -39,7 +34,7 @@ const index = () => {
 
         <LandingBtnContainer>
           <LandingBtn>Browse Places</LandingBtn>
-          <LandingBtn>Add Place</LandingBtn>
+          <LandingBtn onClick={() => setOpenModal(true)}>Add Place</LandingBtn>
         </LandingBtnContainer>
 
         <LandingHeroImageContainer>
@@ -50,6 +45,8 @@ const index = () => {
           ))}
         </LandingHeroImageContainer>
       </LandingHeroContainer>
+
+      {openModal && <Modal setOpenModal={setOpenModal} />}
 
       {/* <Banner /> */}
       <Slider data={data} />
