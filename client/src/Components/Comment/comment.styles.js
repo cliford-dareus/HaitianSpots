@@ -19,8 +19,8 @@ export const Comment = styled.div`
 `;
 
 export const CommentImage = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
   border-radius: 50%;
   background-color: yellowgreen;
@@ -34,10 +34,11 @@ export const CommentContent = styled.div`
 
   p {
     font-size: 0.9rem;
+    line-height: 1.1;
   }
 
   span {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
 `;
 

@@ -1,5 +1,4 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { getUserFromLocalStorage } from "../Utils/functions/getLocalStorage";
 import { useSelector } from "react-redux";
 
 const ProtectedRoutes = () => {

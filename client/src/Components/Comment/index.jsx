@@ -7,15 +7,19 @@ import {
   CommentImage,
 } from "./comment.styles";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import { useGetCommentsQuery } from "../../features/api/commentApi";
 
-const index = ({ data }) => {
+const index = ({ locationId }) => {
+  const { data } = useGetCommentsQuery(locationId);
+  console.log(data);
+  
   return (
     <CommentBox>
-      {data?.comments.map((comment) => (
+      {data?.map((comment) => (
         <Comment key={comment._id}>
           <CommentImage></CommentImage>
           <CommentContent>
-            <h5>Cliford</h5>
+            <h5>{comment.user.userName}</h5>
             <p>{comment.content}</p>
             <span>Thu 22</span>
           </CommentContent>

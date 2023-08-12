@@ -42,10 +42,13 @@ const updateFavoriteLocation = async (req, res) => {
 
 const getLocationById = async (req, res) => {
   const { id } = req.params;
-  
+
   try {
     const location = await Location.findById(id)
-      .populate("comments")
+      .populate({
+        path: "comments",
+        populate: { path: "user", select: "userName"},
+      })
       .populate({ path: "creator", select: ["userName", "email"] });
     res.status(200).json(location);
   } catch (error) {
@@ -60,7 +63,7 @@ const getLocation = async (req, res) => {
   const { name, ratingFilter, sort } = req.query;
   let newObject = {};
 
-  console.log(name)
+  console.log(name);
 
   if (name) {
     newObject.name = { $regex: name, $options: "i" };

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  // ActiveLinkIndicator,
   SideBarBottom,
   SideBarBottomBtn,
   SideBarContainer,
@@ -25,14 +24,15 @@ import { useLogoutUserMutation } from "../../../features/api/authApi";
 import { removeUserInfo } from "../../../features/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import useGetActiveUrl from "../../../Utils/hooks/useGetActiveUrl";
 
 const index = () => {
+  const location = useGetActiveUrl();
   const token = useSelector((state) => state.User.user);
-  let [activeTab, setActiveTab] = useState(sideBarData[0].id);
+  let [activeTab, setActiveTab] = useState(location[0].to);
   const [logoutUser] = useLogoutUserMutation();
   const dispatch = useDispatch();
 
-  
   const handledLogout = async () => {
     try {
       const refreshToken = token?.refreshTokenJWT;
@@ -60,16 +60,16 @@ const index = () => {
           {sideBarData.map((item) => (
             <SideBarNavigationItem
               key={item.id}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => setActiveTab(item.to)}
             >
-              <SideBarNavigationLink to={item.to} >
+              <SideBarNavigationLink to={item.to}>
                 <span>
                   {item.icon}
                   {/* <AiOutlineHome /> */}
                 </span>
                 <p>{item.name}</p>
               </SideBarNavigationLink>
-              {activeTab === item.id && (
+              {activeTab === item.to && (
                 <ActiveLinkIndicator layoutId="bubble" rounded="true" />
               )}
             </SideBarNavigationItem>

@@ -37,10 +37,9 @@ const index = ({ itemPosition }) => {
   const [show, setShow] = useState(false);
   const { pathname } = useLocation();
   const imageRef = useRef(null);
-  const dispatch = useDispatch();
 
   const id = pathname.split(":")[1];
-  const { data, refetch } = useGetLocationByIdQuery(id);
+  const { data } = useGetLocationByIdQuery(id);
 
   const handledComments = (e) => {
     setComments(e.target.value);
@@ -56,7 +55,6 @@ const index = ({ itemPosition }) => {
     try {
       await postComment({ locationId: id, comment: comments });
       setComments("");
-      refetch();
     } catch (error) {
       console.log(error);
     }
@@ -115,7 +113,7 @@ const index = ({ itemPosition }) => {
             </form>
           </div>
 
-          <CommentBox data={data} />
+          <CommentBox locationId={id} />
         </CommentInner>
 
         <PlaceUserContainer>

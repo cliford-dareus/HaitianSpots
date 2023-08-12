@@ -19,7 +19,7 @@ export const CardContainer = styled(motion.div)`
 export const CardImageContainer = styled.div`
   height: 50%;
   position: relative;
-`
+`;
 
 export const CardImage = styled.img`
   position: absolute;
@@ -32,13 +32,34 @@ export const CardImage = styled.img`
 
 export const CardFavoriteBtn = styled.div`
   position: absolute;
-  top: .5em;
-  right: .5em;
+  top: 0.5em;
+  right: 0.5em;
   z-index: 333;
   font-size: 1.5rem;
 `;
 
 export const CardBodyContainer = styled.div`
   padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
+export const CardTitle = styled.h3`
+  line-height: 1;
+  margin-top: 5px;
+`;
+
+export const CardRating = styled.span`
+  font-size: 0.8rem;
+`;
+
+export const CardAddress = styled.p`
+  line-height: 1.1;
+  margin-top: 10px;
+  font-size: 0.9rem;
+`;
+
+export const CardAction = styled.div`
+  margin-top: 1em;
+`;
