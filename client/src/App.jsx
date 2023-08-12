@@ -9,7 +9,7 @@ import Places from "./Pages/Places";
 import Place from "./Pages/Place";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
-import Favorites from './Pages/Favorites';
+import Favorites from "./Pages/Favorites";
 
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import Layout from "./Components/Layout";
@@ -51,18 +51,20 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
-        <Route element={<ProtectedRoutes />}>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Landing />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Landing />} />
             <Route
               path="/places"
               element={<Places onItemSelected={onItemSelected} />}
             />
+        </Route>
+
+        <Route element={<ProtectedRoutes />}>
+          <Route element={<Layout />}>
             <Route
               path="/place/:id"
               element={
-                <Place itemPosition={{containerPosition, imagePosition}} />
+                <Place itemPosition={{ containerPosition, imagePosition }} />
               }
             />
             <Route path="/favorites" element={<Favorites />} />

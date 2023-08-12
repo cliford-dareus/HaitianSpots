@@ -1,10 +1,27 @@
 import React from "react";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import { useFavoriteLocationMutation } from "../../../features/api/locationApi";
-import { CardBodyContainer, CardContainer, CardFavoriteBtn, CardImage, CardImageContainer } from "./Card.style";
+import {
+  CardBodyContainer,
+  CardContainer,
+  CardFavoriteBtn,
+  CardImage,
+  CardImageContainer,
+} from "./Card.style";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify"
 
 const index = ({ list, index, onItemSelected }) => {
+  const user = useSelector((state) => state.User.isLoggedIn);
   const [updateFavorite] = useFavoriteLocationMutation();
+
+  const handleFavorite = (id) => {
+    if (!user) {
+      toast("You must be logged in to favorited!", { type: "warning" });
+      return
+    }
+    updateFavorite(id);
+  };
 
   return (
     <CardContainer
@@ -16,16 +33,15 @@ const index = ({ list, index, onItemSelected }) => {
         ease: "easeIn",
       }}
       key={list._id}
-      onClick={(e) => onItemSelected(e, { list, index })}
     >
       <CardImageContainer>
         <CardImage src={list.image} />
-        <CardFavoriteBtn onClick={() => updateFavorite(list._id)}>
+        <CardFavoriteBtn onClick={() => handleFavorite(list._id)}>
           {!list.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
         </CardFavoriteBtn>
       </CardImageContainer>
 
-      <CardBodyContainer>
+      <CardBodyContainer onClick={(e) => onItemSelected(e, { list, index })}>
         <span>{list.rating}</span>
         <h3>{list.name}</h3>
         <p>{list.address}</p>

@@ -85,6 +85,7 @@ const index = () => {
       </LandingSectionLeft>
 
       <FavoriteSectionRigth>
+        {/* Add palcehoplder when favorite is empty */}
         {!isLoading && <PlaceCard selectedList={selectedList} />}
       </FavoriteSectionRigth>
     </FavoritesContainer>
