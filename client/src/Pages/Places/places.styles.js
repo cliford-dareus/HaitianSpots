@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 export const LocationSection = styled.section`
   width: 100%;
-  height: calc(100% - 50px);
-  padding-top: 3em;
+  /* height: calc(100% - 50px); */
   padding-inline: 24px;
   overflow: hidden;
+  max-width: 1440px;
+  margin-inline: auto;
 `;
 
 export const LocationSectionContentBox = styled.div`
@@ -63,97 +64,10 @@ export const LocationContentListBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 
   @media screen and (min-width: 700px) {
     max-height: calc(100% - 2.75em);
   }
 `;
 
-export const LocationContentList = styled(motion.div)`
-  position: relative;
-  height: 200px;
-  width: 30%;
-  min-height: 100px; //300px
-  border-radius: 0.5em;
-  background-color: var(--bg--primary-500);
-  cursor: pointer;
-
-  @media screen and (min-width: 700px) {
-    /* height: 300px; */
-  }
-`;
-
-export const LocationContentListInner = styled.div`
-  position: absolute;
-  width: 90%;
-  height: 100%;
-  display: flex;
-  /* flex-direction: column; */
-`;
-
-export const LocationContentListImage = styled.div`
-  min-width: 50px;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-  background-color: gray;
-  border-radius: 0.5em;
-
-  @media screen and (min-width: 700px){
-    width: 200px;
-    
-  }
-
-  img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
-export const LocationContentListTextBox = styled.div`
-  height: 100%;
-  flex: 1;
-  padding: 1em;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  
-  /* align-items: center; */
-  /* padding-right: 9em; */
-`;
-
-export const LocationContentListText = styled.div`
-  width: 15ch;
-
-  @media screen and (min-width: 700px){
-   width: 30ch;
-  }
-
-  @media screen and (min-width: 1025px){
-   width: 40ch;
-  }
-
-  p {
-    display: none;
-
-    @media screen and (min-width: 700px) {
-      display: block;
-    }
-  }
-`;
-
-export const LocationContentListBtn = styled(motion.div)`
-  border: none;
-  outline: none;
-  padding: 0.5em 1em;
-  border-radius: 0.5em;
-  background-color: var(--bg--primary-900);
-  border: 1px solid var(--accent--color-200);
-  color: whitesmoke;
-  font-size: 0.9rem;
-  text-decoration: none;
-`;

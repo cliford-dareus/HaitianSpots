@@ -2,12 +2,15 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const PlaceContainer = styled(motion.section)`
-  width: 100%;
-  height: 100%;
+  height: calc(100% - 50px);
   padding-top: 3em;
   display: flex;
   gap: 1em;
   position: relative;
+  padding-inline: 24px;
+  overflow: hidden;
+  max-width: 1440px;
+  margin-inline: auto;
 `;
 
 export const PlaceContentContainer = styled(motion.div)`
@@ -19,11 +22,9 @@ export const PlaceContentContainer = styled(motion.div)`
 
 export const PlaceImageContainer = styled.div`
   width: 100%;
-  height: 70%;
+  height: 400px;
   display: flex;
   gap: 0.5em;
-  border-radius: 0.5em;
-  overflow: hidden;
 `;
 
 export const PlaceActiveImage = styled.div`

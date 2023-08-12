@@ -11,8 +11,9 @@ import {
 } from "./landing.style";
 // import Map from "../../Components/Map";
 // import Modal from "../../Components/LocationModal";
-import Banner from "../../Components/UI/Banner";
+// import Banner from "../../Components/UI/Banner";
 import Slider from "../../Components/UI/Slider";
+import Footer from "../../Components/UI/Footer";
 import NearYou from "../../Components/NearYou";
 import { AiOutlineHeart, AiOutlinePlus, AiTwotoneHeart } from "react-icons/ai";
 import {
@@ -52,7 +53,8 @@ const index = () => {
 
       {/* <Banner /> */}
       <Slider data={data} />
-      <NearYou data={data} />
+      {data?.location && <NearYou data={data} />}
+      <Footer />
     </LandingSection>
   );
 };

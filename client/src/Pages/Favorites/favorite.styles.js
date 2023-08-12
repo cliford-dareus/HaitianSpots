@@ -2,9 +2,12 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const FavoritesContainer = styled.section`
+  padding-inline: 24px;
+  max-width: 1440px;
+  margin-inline: auto;
   position: relative;
   width: 100%;
-  height: calc(100% - 100px);
+  /* height: calc(100% - 100px); */
   display: grid;
   grid-template-columns: 60% auto;
   gap: 2em;

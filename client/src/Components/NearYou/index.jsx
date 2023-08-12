@@ -13,7 +13,7 @@ import { LandingHeroImg } from "../../Pages/Landing/landing.style";
 
 const index = ({ data }) => {
   // calculate a closer location on mount
-  const [selectedList, setSelectedPlace] = useState(data.location[0]);
+  const [selectedList, setSelectedPlace] = useState(data.location[1]);
 
   return (
     <LandingNearYouContainer>

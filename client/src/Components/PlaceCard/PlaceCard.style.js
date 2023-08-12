@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const PlaceCardContainer = styled.div`
   width: 100%;
   height: 100%;
+  min-height: 500px;
   border-radius: 0.5em;
   overflow: hidden;
   background-color: var(--bg--primary-800);

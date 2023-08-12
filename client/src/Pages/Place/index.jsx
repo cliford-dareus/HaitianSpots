@@ -75,20 +75,21 @@ const index = ({ itemPosition }) => {
 
   return (
     <PlaceContainer animate={show ? "show" : "hide"}>
-      <AnimatePresence>
-        {itemPosition?.containerPosition && itemPosition.imagePosition && (
-          <TransitionLayer
-            setShow={setShow}
-            itemPosition={itemPosition}
-            imageToPosition={imagePosition}
-            data={imageRef?.current?.currentSrc}
-          />
-        )}
-      </AnimatePresence>
-
       <PlaceContentContainer variants={variants}>
         <PlaceImageContainer>
           <PlaceActiveImage>
+            <AnimatePresence>
+              {itemPosition?.containerPosition &&
+                itemPosition.imagePosition && (
+                  <TransitionLayer
+                    setShow={setShow}
+                    itemPosition={itemPosition}
+                    imageToPosition={imagePosition}
+                    data={imageRef?.current?.currentSrc}
+                  />
+                )}
+            </AnimatePresence>
+            
             <img src={`${data?.image}`} ref={imageRef} alt="" />
           </PlaceActiveImage>
           {/* Grid for more image */}

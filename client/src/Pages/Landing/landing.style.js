@@ -85,6 +85,9 @@ export const MapContainer = styled.div`
 `;
 export const LandingSectionCard = styled.div``;
 export const LandingSectionCardContainer = styled.div``;
-export const SectionTitle = styled.div``;
+export const SectionTitle = styled.h1`
+  font-size: 2rem;
+  line-height: 1;
+`;
 export const LandingSectionLeft = styled.div``;
 export const LandingSectionRigth = styled.div``;
