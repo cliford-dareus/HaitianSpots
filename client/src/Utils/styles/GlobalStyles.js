@@ -65,5 +65,6 @@ export const GlobalStyles = createGlobalStyle`
         display: flex;
         justify-content: space-between;
         gap: 1em;
+        margin-inline: 0;
     }
 `;

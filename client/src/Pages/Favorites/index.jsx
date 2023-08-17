@@ -17,8 +17,10 @@ import {
 import PlaceCard from "../../Components/PlaceCard";
 import PlaceFilter from "../../Components/PlacesFilter";
 import { AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
 
 const index = () => {
+  const userId = useSelector((state) => state.User.user.user.data._id);
   const [updateFavorite] = useFavoriteLocationMutation();
   const { data, isLoading } = useGetLocationsQuery();
   const [favoriteList, setFavoriteList] = useState([]);
@@ -27,7 +29,9 @@ const index = () => {
 
   useEffect(() => {
     const filterData = () => {
-      return data?.location?.filter((x) => x.favorite === true);
+      return data?.location?.filter((x) => {
+        return x.favorite.filter((f) => f == userId).length ? true : false;
+      });
     };
     setFavoriteList(filterData);
   }, [data]);
@@ -66,7 +70,7 @@ const index = () => {
                   >
                     <h3>{x.name}</h3>
                     <FavoriteListAction onClick={() => updateFavorite(x._id)}>
-                      {!x.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
+                      <AiTwotoneHeart />
                     </FavoriteListAction>
                   </FavoriteList>
                 ))
@@ -85,7 +89,7 @@ const index = () => {
       </LandingSectionLeft>
 
       <FavoriteSectionRigth>
-        {/* Add palcehoplder when favorite is empty */}
+        {/* Add palcehoplder when favorite is empy */}
         {!isLoading && <PlaceCard selectedList={selectedList} />}
       </FavoriteSectionRigth>
     </FavoritesContainer>

@@ -16,11 +16,11 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 const index = ({ list, index, onItemSelected }) => {
-  const user = useSelector((state) => state.User.isLoggedIn);
+  const user = useSelector((state) => state.User);
   const [updateFavorite] = useFavoriteLocationMutation();
 
   const handleFavorite = (id) => {
-    if (!user) {
+    if (!user.isLoggedIn) {
       toast("You must be logged in to favorited!", { type: "warning" });
       return;
     }
@@ -41,7 +41,11 @@ const index = ({ list, index, onItemSelected }) => {
       <CardImageContainer>
         <CardImage src={list.image} />
         <CardFavoriteBtn onClick={() => handleFavorite(list._id)}>
-          {!list.favorite ? <AiOutlineHeart /> : <AiTwotoneHeart />}
+          {!list?.favorite.find(f => f === user.user.user?.data._id) ? (
+            <AiOutlineHeart />
+          ) : (
+            <AiTwotoneHeart />
+          )}
         </CardFavoriteBtn>
       </CardImageContainer>
 

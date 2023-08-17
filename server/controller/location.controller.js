@@ -24,7 +24,8 @@ const createLocation = async (req, res) => {
 
 const updateFavoriteLocation = async (req, res) => {
   const { id } = req.params;
-
+  const user = req.user;
+  
   const location = await Location.findOne({
     _id: id,
   });
@@ -33,35 +34,35 @@ const updateFavoriteLocation = async (req, res) => {
     throw new Error("Place Does not exist");
   }
 
-    try {
-      const location = await Location.findById(id);
+  try {
+    const location = await Location.findById(id);
 
-      if (!location) {
-        return res
-          .status(StatusCodes.BAD_REQUEST)
-          .json({ message: "No place with this id" });
-      }
+    if (!location) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: "No place with this id" });
+    }
 
-      if (location.favorite.includes(id)) {
-        await location.updateOne({ $pull: { favorite: id } });
+    if (location.favorite.includes(user._id)) {
+      await location.updateOne({ $pull: { favorite: user._id } });
 
-        res.status(StatusCodes.OK).json({
-          status: StatusCodes.OK,
-          message: "Place unliked",
-        });
-      } else {
-        await location.updateOne({ $push: { favorite: id } });
-        res.status(StatusCodes.OK).json({
-          status: StatusCodes.OK,
-          message: "Place liked",
-        });
-      }
-    } catch (error) {
-      res.status(StatusCodes.BAD_REQUEST).json({
-        status: StatusCodes.BAD_REQUEST,
-        message:"Bad request" ,
+      res.status(StatusCodes.OK).json({
+        status: StatusCodes.OK,
+        message: "Place unliked",
+      });
+    } else {
+      await location.updateOne({ $push: { favorite: user._id } });
+      res.status(StatusCodes.OK).json({
+        status: StatusCodes.OK,
+        message: "Place liked",
       });
     }
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({
+      status: StatusCodes.BAD_REQUEST,
+      message: "Bad request",
+    });
+  }
 };
 
 const getLocationById = async (req, res) => {

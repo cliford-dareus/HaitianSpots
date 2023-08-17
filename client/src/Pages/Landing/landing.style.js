@@ -23,7 +23,7 @@ export const LandingHeroContainer = styled.div`
 `;
 
 export const LandingHeroText = styled.h1`
-  font-size: 3rem;
+  font-size: 4rem;
   line-height: 1;
   text-align: center;
   max-width: 20ch;
