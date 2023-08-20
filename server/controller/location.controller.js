@@ -26,32 +26,26 @@ const updateFavoriteLocation = async (req, res) => {
   const { id } = req.params;
   const user = req.user;
   
-  const location = await Location.findOne({
-    _id: id,
-  });
-
-  if (!location) {
-    throw new Error("Place Does not exist");
-  }
+  console.log("USER : " + user)
 
   try {
     const location = await Location.findById(id);
 
     if (!location) {
       return res
-        .status(StatusCodes.BAD_REQUEST)
-        .json({ message: "No place with this id" });
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "No place with this id" });
     }
-
-    if (location.favorite.includes(user._id)) {
-      await location.updateOne({ $pull: { favorite: user._id } });
-
+    
+    if (location.favorite.includes(user.user._id)) {
+      await location.updateOne({ $pull: { favorite: user.user._id } });
+      
       res.status(StatusCodes.OK).json({
         status: StatusCodes.OK,
         message: "Place unliked",
       });
     } else {
-      await location.updateOne({ $push: { favorite: user._id } });
+      await location.updateOne({ $push: { favorite: user.user._id } });
       res.status(StatusCodes.OK).json({
         status: StatusCodes.OK,
         message: "Place liked",

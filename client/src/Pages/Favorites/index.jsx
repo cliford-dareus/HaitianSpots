@@ -20,7 +20,7 @@ import { AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 
 const index = () => {
-  const userId = useSelector((state) => state.User.user.user.data._id);
+  const userId = useSelector((state) => state.User.user.user?.data._id);
   const [updateFavorite] = useFavoriteLocationMutation();
   const { data, isLoading } = useGetLocationsQuery();
   const [favoriteList, setFavoriteList] = useState([]);

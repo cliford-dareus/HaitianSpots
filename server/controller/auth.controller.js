@@ -32,8 +32,6 @@ const login = async (req, res) => {
   try {
     const { name, password } = req.body;
     const user = await User.findOne({ userName: name });
-    console.log(name);
-    console.log(user);
     
     if (!user) {
       return res.status(401).send({
@@ -45,11 +43,12 @@ const login = async (req, res) => {
     if (!match) {
       return res.status(401).send({
         status: "failure",
-        message: "password is incorrect",
+        message: "Invalid Credentials",
       });
     }
 
     const refreshTokenJWT = createJWT({ payload: { user } });
+    console.log(refreshTokenJWT)
 
     await User.findByIdAndUpdate(user._id, {
       jwtToken: refreshTokenJWT,
