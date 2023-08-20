@@ -119,7 +119,7 @@ const index = ({ itemPosition }) => {
         <PlaceUserContainer>
           <h3>Posted By</h3>
           <div>
-            <p>{data?.creator.userName}</p>
+            {/* <p>{data?.creator?.userName}</p> */}
             <button>Check more from this User</button>
           </div>
         </PlaceUserContainer>

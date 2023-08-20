@@ -20,7 +20,7 @@ import { AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 
 const index = () => {
-  const userId = useSelector((state) => state.User.user.user?.data._id);
+  const user = useSelector((state) => state.User.user);
   const [updateFavorite] = useFavoriteLocationMutation();
   const { data, isLoading } = useGetLocationsQuery();
   const [favoriteList, setFavoriteList] = useState([]);
@@ -30,7 +30,9 @@ const index = () => {
   useEffect(() => {
     const filterData = () => {
       return data?.location?.filter((x) => {
-        return x.favorite.filter((f) => f == userId).length ? true : false;
+        return x.favorite.filter((f) => f == user.user.data._id).length
+          ? true
+          : false;
       });
     };
     setFavoriteList(filterData);

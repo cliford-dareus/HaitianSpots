@@ -18,9 +18,7 @@ import { useSelector } from "react-redux";
 const index = ({ onItemSelected }) => {
   const { data, isLoading, isFetching } = useGetLocationsQuery();
   const [filterData, setFilterData] = useState([]);
-
-  const user = useSelector((state) => state.User);
-  // const imageRef = useRef(null);
+  const user = useSelector((state) => state.User.user);
 
   useEffect(() => {
     setFilterData(data?.location);

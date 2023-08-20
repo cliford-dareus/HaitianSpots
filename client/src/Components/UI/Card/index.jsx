@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 const index = ({ list, index, onItemSelected }) => {
-  const user = useSelector((state) => state.User);
+  const user = useSelector((state) => state.User.user);
   const [updateFavorite] = useFavoriteLocationMutation();
 
   const handleFavorite = (id) => {
@@ -41,7 +41,7 @@ const index = ({ list, index, onItemSelected }) => {
       <CardImageContainer>
         <CardImage src={list.image} />
         <CardFavoriteBtn onClick={() => handleFavorite(list._id)}>
-          {!list?.favorite.find(f => f === user.user.user?.data._id) ? (
+          {!list?.favorite.find((f) => f === user?.user?.data._id) ? (
             <AiOutlineHeart />
           ) : (
             <AiTwotoneHeart />

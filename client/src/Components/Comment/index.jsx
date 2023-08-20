@@ -19,8 +19,8 @@ const index = ({ locationId }) => {
         <Comment key={comment._id}>
           <CommentImage></CommentImage>
           <CommentContent>
-            <h5>{comment.user.userName}</h5>
-            <p>{comment.content}</p>
+            <h5>{comment?.user.userName}</h5>
+            <p>{comment?.content}</p>
             <span>Thu 22</span>
           </CommentContent>
           <CommentActions>
