@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { LocationModal } from "./locationModal.styles";
+import { CloseButton, LocationModal } from "./locationModal.styles";
 import InputField from "../UI/InputField";
 import { useAddLocationMutation } from "../../features/api/locationApi";
 import { toast } from "react-toastify";
@@ -10,6 +10,7 @@ import {
   SelectField,
 } from "../UI/InputField/inputField.styles";
 import { specialities } from "../../Utils/commons/constants";
+import { AiOutlineClose } from 'react-icons/ai'
 
 const index = ({ setOpenModal }) => {
   const user = true;
@@ -59,7 +60,9 @@ const index = ({ setOpenModal }) => {
 
   return (
     <LocationModal>
-      <button onClick={() => setOpenModal(false)}>Close</button>
+      <CloseButton onClick={() => setOpenModal(false)}>
+        <AiOutlineClose />
+      </CloseButton>
 
       <form onSubmit={onSubmit}>
         <InputField

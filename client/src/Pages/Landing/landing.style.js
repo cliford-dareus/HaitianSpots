@@ -1,16 +1,20 @@
 import styled from "styled-components";
 
 export const LandingSection = styled.section`
-  padding-inline: 24px;
-  /* height: 200vh; */
   width: 100%;
   max-width: 1440px;
   margin-inline: auto;
+  position: relative;
+  padding-top: 90px;
+
+  @media screen and (min-width: 764px) {
+    padding-inline: 24px;
+    padding-top: 0;
+  }
 `;
 
 export const LandingHeroContainer = styled.div`
-  max-width: 70%;
-  height: 50vh;
+  height: 40vh;
   margin-inline: auto;
   padding: 1em;
   position: relative;
@@ -20,13 +24,25 @@ export const LandingHeroContainer = styled.div`
   flex-direction: column;
   margin-top: 3em;
   text-align: center;
+
+  @media screen and (min-width: 764px) {
+    max-width: 70%;
+    height: 50vh;
+  }
 `;
 
 export const LandingHeroText = styled.h1`
-  font-size: 4rem;
+  font-size: 2rem;
   line-height: 1;
   text-align: center;
-  max-width: 20ch;
+  /* max-width: 20ch; */
+
+  @media screen and (min-width: 764px) {
+    font-size: 4rem;
+    line-height: 1;
+    text-align: center;
+    max-width: 20ch;
+  }
 `;
 
 export const LandingHeroImageContainer = styled.div`
@@ -51,7 +67,7 @@ export const LandingHeroImage = styled.div`
     margin-top: 1em;
   }
 
-  :nth-of-type(2){
+  :nth-of-type(2) {
     margin-bottom: 1em;
   }
 `;
@@ -62,7 +78,7 @@ export const LandingHeroImg = styled.img`
   object-fit: cover;
   width: 100%;
   height: 100%;
-  opacity: .6;
+  opacity: 0.6;
 `;
 
 export const LandingBtnContainer = styled.div`

@@ -4,8 +4,8 @@ import styled from "styled-components";
 export const CardContainer = styled(motion.div)`
   flex: 1 46%;
   height: 400px;
-  max-width: 300px;
-  min-width: 200px;
+  max-width: 400px;
+  min-width: 240px;
   border-radius: 0.5em;
   overflow: hidden;
   background-color: var(--bg--primary-500);

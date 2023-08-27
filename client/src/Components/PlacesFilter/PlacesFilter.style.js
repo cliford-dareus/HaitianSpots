@@ -5,17 +5,18 @@ export const LocationSectionFilter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  
   span {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5em;
   }
-`;
+  `;
 
 export const FiltersBox = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 1em;
 `;

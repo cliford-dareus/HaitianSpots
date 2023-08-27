@@ -3,11 +3,13 @@ import styled from "styled-components";
 
 export const LocationSection = styled.section`
   width: 100%;
-  /* height: calc(100% - 50px); */
-  padding-inline: 24px;
   overflow: hidden;
   max-width: 1440px;
   margin-inline: auto;
+  
+  @media screen and (min-width: 764px) {
+    padding-inline: 24px;
+  }
 `;
 
 export const LocationSectionContentBox = styled.div`
@@ -21,26 +23,15 @@ export const LocationSectionContent = styled.div`
   flex-direction: column;
   gap: 1em;
   margin-top: 1em;
-
-  /*  */
-  @media screen and (min-width: 560px) {
-    flex-direction: row;
-  }
 `;
 
 export const LocationSectionContentFilter = styled.div`
   display: flex;
   gap: 1em;
-  /* flex-direction: column; */
-
-  /*  */
-  @media screen and (min-width: 560px) {
-    flex-direction: column;
-  }
+  flex-wrap: wrap;
 `;
 
 export const ContentFilter = styled.div`
-  /* width: 3em; */
   padding-inline: 0.5em;
   height: 2em;
   border-radius: 0.5em;
@@ -64,7 +55,6 @@ export const LocationContentListBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
-  /* overflow-y: scroll; */
 
   @media screen and (min-width: 700px) {
     max-height: calc(100% - 2.75em);

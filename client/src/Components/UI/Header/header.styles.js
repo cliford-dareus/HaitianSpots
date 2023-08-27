@@ -8,7 +8,17 @@ export const HeaderContainer = styled.header`
   align-items: center;
   max-width: 1440px;
   margin-inline: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 99999;
+  background-color: black;
   padding-inline: 24px;
+
+  @media screen and (min-width: 764px) {
+    position: static;
+  }
 `;
 
 export const HeaderSearch = styled.div`
@@ -40,10 +50,10 @@ export const HeaderSearchInput = styled.input`
 
 export const HeaderActions = styled.div`
   position: relative;
-  display: flex;
   align-items: center;
   gap: 1em;
-
+  display: none;
+  
   span {
     display: flex;
     align-items: center;
@@ -51,6 +61,20 @@ export const HeaderActions = styled.div`
     font-size: 1.5rem;
     color: var(--txt--color-100);
     cursor: pointer;
+  }
+  
+  @media screen and (min-width: 764px) {
+    display: flex;
+  }
+`;
+
+export const HeaderMenuButton = styled.div`
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+
+  @media screen and (min-width: 764px) {
+    display: none;
   }
 `;
 
@@ -84,7 +108,7 @@ export const HeaderPopup = styled.div`
   z-index: 1000;
   background-color: var(--bg--primary-400);
 
-  ul{
+  ul {
     list-style-type: none;
   }
 `;

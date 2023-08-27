@@ -3,16 +3,18 @@ import { Link } from "react-router-dom";
 import {
   HeaderActions,
   HeaderContainer,
+  HeaderMenuButton,
   HeaderPopup,
   HeaderProfile,
   HeaderSearch,
   HeaderSearchInput,
 } from "./header.styles";
-import DefaultPic from "../../../assets/profile.jpg";
+import DefaultPic from "/src/assets/profile.jpg";
 import { BsSearch } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { useGetLocationQuery } from "../../../features/api/locationApi";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const index = () => {
   const [word, setWord] = useState('');
@@ -75,6 +77,10 @@ const index = () => {
           </HeaderPopup>
         )}
       </HeaderActions>
+
+      <HeaderMenuButton>
+        <AiOutlineMenu />
+      </HeaderMenuButton>
     </HeaderContainer>
   );
 };
